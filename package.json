@@ -10,7 +10,8 @@
         "test": "ng test",
         "prettier:fix": "prettier --write",
         "prettier:fix:all": "npm run prettier:fix .",
-        "lint": "ng lint"
+        "lint": "ng lint",
+        "prepare": "husky"
     },
     "private": true,
     "dependencies": {
@@ -39,12 +40,14 @@
         "@typescript-eslint/eslint-plugin": "5.62.0",
         "@typescript-eslint/parser": "5.62.0",
         "eslint": "^8.51.0",
+        "husky": "^9.0.11",
         "jasmine-core": "~4.6.0",
         "karma": "~6.4.0",
         "karma-chrome-launcher": "~3.2.0",
         "karma-coverage": "~2.2.0",
         "karma-jasmine": "~5.1.0",
         "karma-jasmine-html-reporter": "~2.1.0",
+        "lint-staged": "^15.2.2",
         "prettier": "^3.2.5",
         "typescript": "~5.1.3"
     }
