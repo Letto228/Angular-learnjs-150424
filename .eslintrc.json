@@ -11,6 +11,10 @@
                 "plugin:@angular-eslint/template/process-inline-templates"
             ],
             "rules": {
+                "no-multi-spaces": "warn",
+                "no-var": "warn",
+                "no-unused-vars": "warn",
+                "import/prefer-default-export": "off",
                 "@angular-eslint/directive-selector": [
                     "error",
                     {
