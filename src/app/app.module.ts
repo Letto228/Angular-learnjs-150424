@@ -7,11 +7,6 @@ import {AppComponent} from './app.component';
 import {HeaderModule} from './components/header/header.module';
 import {ProductsListModule} from './pages/products-list/products-list.module';
 import {SidenavModule} from './components/sidenav/sidenav.module';
-// import {HeaderComponent} from './components/header/header.component';
-
-// declaration ~ const
-// export ~ module.export = {...}
-// import ~ import {...} from '...'
 
 @NgModule({
     declarations: [AppComponent],
@@ -24,8 +19,6 @@ import {SidenavModule} from './components/sidenav/sidenav.module';
         ProductsListModule,
         SidenavModule,
     ],
-    // imports: [HeaderComponent, BrowserModule, AppRoutingModule, BrowserAnimationsModule],
-    //
     bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -12,6 +12,5 @@ export class SidenavComponent {
 
     toggleSidenavOpened() {
         this.isSidenavOpenedChange.emit(!this.isSidenavOpened);
-        // this.isSidenavOpened = !this.isSidenavOpened;
     }
 }
