@@ -1,8 +1,25 @@
 <mat-toolbar color="primary">
-    <button mat-icon-button aria-label="Example icon-button with menu icon">
+    <button
+        mat-icon-button
+        aria-label="Example icon-button with menu icon"
+        (click)="onClick($event)"
+    >
+        <!--
+        ButtonElement.addEventListener('click', ($event) => {
+            onClick($event)
+        })
+     -->
         <mat-icon>menu</mat-icon>
     </button>
-    <span>My App</span>
+    <!-- <img src="{{imageSrc}}" /> -->
+    <!-- <img [src]="imageSrc" [style.width.%]="100"/> -->
+    <!-- <img [src]="imageSrc" [class.shop-icon]="false"/> -->
+    <!-- <img [src]="imageSrc" class="shop-icon"/> -->
+    <!-- <img [src]="aplicationConfig && aplicationConfig.shopIconSrc" class="shop-icon"/> -->
+    <img alt="Logo" class="shop-icon" [src]="aplicationConfig?.shopIconSrc" />
+    <span>{{ aplicationConfig?.title }}</span>
+    <!-- <span>{{ this.title }}</span> -->
+    <!-- <span>{{ getTitle() }}</span> -->
     <span class="example-spacer"></span>
     <button mat-icon-button aria-label="Example icon-button with heart icon" class="favorite-icon">
         <mat-icon>favorite</mat-icon>

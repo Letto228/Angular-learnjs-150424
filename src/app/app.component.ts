@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {applicationConfigMock} from './shared/application-config/application-config.mock';
 
 @Component({
     selector: 'app-root',
@@ -10,5 +11,15 @@ import {Component} from '@angular/core';
     styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-    title = 'Angular-learnjs-150424';
+    // title = 'Angular-learnjs-150424';
+
+    readonly aplicationConfigMock = applicationConfigMock;
+
+    isSidenavOpenedStore = false;
+
+    onMenuClick(_event: Event) {
+        // console.log('Menu clicked (in AppComponent)', event);
+
+        this.isSidenavOpenedStore = !this.isSidenavOpenedStore;
+    }
 }

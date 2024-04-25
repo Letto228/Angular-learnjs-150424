@@ -1,2 +1,15 @@
-<app-header></app-header>
-<app-products-list></app-products-list>
+<!-- <app-header [aplicationConfig]="null"></app-header> -->
+<app-header
+    [aplicationConfig]="aplicationConfigMock"
+    (menuClick)="onMenuClick($event)"
+></app-header>
+<!--
+    HeaderComponent.menuClick.subscribe($event => {
+        onMenuClick($event);
+    })
+ -->
+<app-sidenav
+    [isSidenavOpened]="isSidenavOpenedStore"
+    (isSidenavOpenedChange)="isSidenavOpenedStore = $event"
+></app-sidenav>
+<!-- <app-header aplicationConfig="{{aplicationConfigMock}}"></app-header> -->
