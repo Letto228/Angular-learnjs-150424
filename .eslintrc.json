@@ -12,6 +12,8 @@
                 "plugin:@angular-eslint/template/process-inline-templates"
             ],
             "rules": {
+                "@typescript-eslint/no-extraneous-class": "off",
+                "no-console": "off",
                 "@angular-eslint/directive-selector": [
                     "error",
                     {
@@ -35,6 +37,13 @@
             "extends": [
                 "plugin:@angular-eslint/template/recommended",
                 "plugin:@angular-eslint/template/accessibility"
+            ],
+            "rules": {}
+        },
+        {
+            "files": ["*.json"],
+            "extends": [
+                "plugin:jsonc/recommended-with-jsonc"
             ],
             "rules": {}
         }
