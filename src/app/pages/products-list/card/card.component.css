@@ -1,0 +1,18 @@
+.product-card {
+  width: 300px;
+}
+
+.product-card img {
+  max-width: 100%;
+  height: auto;
+  margin: 1rem auto;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+mat-raised-button:hover {
+  color: primary;
+}
