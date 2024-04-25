@@ -1,0 +1,22 @@
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {HeaderModule} from './components/header/header.module';
+// import {HeaderComponent} from './components/header/header.component';
+
+// declaration ~ const
+// export ~ module.export = {...}
+// import ~ import {...} from '...'
+
+@NgModule({
+    declarations: [AppComponent],
+    exports: [],
+    imports: [HeaderModule, BrowserModule, AppRoutingModule, BrowserAnimationsModule],
+    // imports: [HeaderComponent, BrowserModule, AppRoutingModule, BrowserAnimationsModule],
+    //
+    bootstrap: [AppComponent],
+})
+export class AppModule {}
