@@ -5,7 +5,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HeaderModule} from './components/header/header.module';
 import {ProductsListModule} from './pages/products-list/products-list.module';
-import {CardModule} from './pages/products-list/card/card.module';
 // eslint-disable-next-line prettier/prettier
 // import {HeaderComponent} from './components/header/header.component';
 
@@ -17,7 +16,6 @@ import {CardModule} from './pages/products-list/card/card.module';
     declarations: [AppComponent],
     exports: [],
     imports: [
-        CardModule,
         HeaderModule,
         BrowserModule,
         AppRoutingModule,
