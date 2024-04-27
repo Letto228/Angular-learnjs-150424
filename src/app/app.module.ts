@@ -5,18 +5,20 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HeaderModule} from './components/header/header.module';
-// import {HeaderComponent} from './components/header/header.component';
-
-// declaration ~ const
-// export ~ module.export = {...}
-// import ~ import {...} from '...'
+import {ProductsListModule} from './pages/products-list/products-list.module';
+import {SidenavModule} from './components/sidenav/sidenav.module';
 
 @NgModule({
     declarations: [AppComponent],
     exports: [],
-    imports: [HeaderModule, BrowserModule, AppRoutingModule, BrowserAnimationsModule],
-    // imports: [HeaderComponent, BrowserModule, AppRoutingModule, BrowserAnimationsModule],
-    //
+    imports: [
+        HeaderModule,
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        ProductsListModule,
+        SidenavModule,
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

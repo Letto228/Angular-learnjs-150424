@@ -1,1 +1,10 @@
-<app-header></app-header>
+<app-header
+    [aplicationConfig]="aplicationConfigMock"
+    (menuClick)="onMenuClick($event)"
+></app-header>
+<!-- <app-sidenav
+    [isSidenavOpened]="isSidenavOpenedStore"
+    (isSidenavOpenedChange)="isSidenavOpenedStore = $event"
+></app-sidenav> -->
+
+<app-products-list></app-products-list>
