@@ -1,29 +1,22 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {HeaderModule} from './components/header/header.module';
-import {ProductsListModule} from './pages/products-list/products-list.module';
-// import {HeaderComponent} from './components/header/header.component';
-
-// declaration ~ const
-// export ~ module.export = {...}
-// import ~ import {...} from '...'
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderModule } from './components/header/header.module';
+import { ProductListModule } from './pages/product-list/product-list.module';
 
 @NgModule({
-    declarations: [AppComponent],
-    exports: [],
-    imports: [
-        HeaderModule,
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        ProductsListModule,
-    ],
-    // imports: [HeaderComponent, BrowserModule, AppRoutingModule, BrowserAnimationsModule],
-    //
-    bootstrap: [AppComponent],
+  declarations: [AppComponent],
+  providers: [],
+  bootstrap: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HeaderModule,
+    ProductListModule,
+  ],
 })
 export class AppModule {}
