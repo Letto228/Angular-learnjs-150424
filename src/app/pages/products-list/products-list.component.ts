@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {productsMock} from '../../shared/products/products.mock';
+import {Product} from '../../shared/products/product.interface';
 
 @Component({
     selector: 'app-products-list',
@@ -8,4 +9,8 @@ import {productsMock} from '../../shared/products/products.mock';
 })
 export class ProductsListComponent {
     readonly productsMock = productsMock;
+
+    logPurchase(product: Product) {
+        console.info('Purchased product: ', product.name);
+    }
 }

@@ -1,0 +1,32 @@
+:host {
+    --star-size: 32px;
+    --star-color: #b7b7b7;
+    --star-background: #fc0;
+}
+.stars {
+    --percent: calc(var(--rating) / 5 * 100%);
+    display: flex;
+    align-items: center;
+    font-size: var(--star-size);
+    line-height: 1;
+}
+.stars::before {
+    content: '★★★★★';
+    background: linear-gradient(
+        90deg,
+        var(--star-background) var(--percent),
+        var(--star-color) var(--percent)
+    );
+    /* background: linear-gradient(
+        90deg,
+        var(--star-background) attr(data-percent),
+        var(--star-color) attr(data-percent)
+    ); */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.stars::after {
+    content: attr(data-rating);
+    font-size: 14px;
+}
