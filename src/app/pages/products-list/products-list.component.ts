@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {Product} from 'src/app/shared/products/product.interface';
 import {productsMock} from '../../shared/products/products.mock';
 
 @Component({
@@ -8,4 +10,10 @@ import {productsMock} from '../../shared/products/products.mock';
 })
 export class ProductsListComponent {
     readonly productsMock = productsMock;
+
+    constructor(private readonly _snackBar: MatSnackBar) {}
+
+    onBuyProduct(product: Product | null): void {
+        this._snackBar.open(`${product?.name} добавлен(a) в корзину`, 'OK');
+    }
 }
