@@ -16,14 +16,14 @@
         <p>Отзывы: {{ product?.feedbacksCount }}</p>
         <div class="raiting">
             Рейтинг:
-            <mat-icon class="star-active">star</mat-icon>
-            <mat-icon class="star-active">star</mat-icon>
-            <mat-icon class="star-active">star</mat-icon>
-            <mat-icon class="star-active">star</mat-icon>
-            <mat-icon>star</mat-icon>
+            <mat-icon [class.star-active]="showIcon(product?.rating, 1)">star</mat-icon>
+            <mat-icon [class.star-active]="showIcon(product?.rating, 2)">star</mat-icon>
+            <mat-icon [class.star-active]="showIcon(product?.rating, 3)">star</mat-icon>
+            <mat-icon [class.star-active]="showIcon(product?.rating, 4)">star</mat-icon>
+            <mat-icon [class.star-active]="showIcon(product?.rating, 5)">star</mat-icon>
         </div>
     </mat-card-content>
     <mat-card-actions class="mat-card-actions-align-end">
-        <button mat-button (click)="onBuyClick($event, product?._id)">Buy</button>
+        <button mat-button (click)="onBuyClick($event)">Buy</button>
     </mat-card-actions>
 </mat-card>

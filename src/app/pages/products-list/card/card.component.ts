@@ -8,16 +8,27 @@ import {Product} from 'src/app/shared/products/product.interface';
 })
 export class CardComponent {
     @Input() product: Product | null = null;
-    @Output() selectedForBuy = new EventEmitter<string>();
+    @Output() readonly selectedForBuy = new EventEmitter<string>();
 
-    onBuyClick(event: Event, productId: string | undefined) {
-        // event.stopPropagation();
-        event.stopImmediatePropagation();
+    onBuyClick(event: Event) {
+        event.stopPropagation();
 
-        if (!productId) {
-            return;
+        this.selectedForBuy.emit(this.product?._id);
+    }
+
+    showIcon(rating: number | undefined, index: number): boolean {
+        let isClassActive = false;
+
+        if (!rating) {
+            return isClassActive;
         }
 
-        this.selectedForBuy.emit(productId);
+        if (rating >= index + 1) {
+            isClassActive = true;
+        } else {
+            isClassActive = false;
+        }
+
+        return isClassActive;
     }
 }

@@ -1,6 +1,4 @@
 import {Component} from '@angular/core';
-import {Product} from 'src/app/shared/products/product.interface';
-
 import {productsMock} from '../../shared/products/products.mock';
 
 @Component({
@@ -9,7 +7,7 @@ import {productsMock} from '../../shared/products/products.mock';
     styleUrls: ['./products-list.component.css'],
 })
 export class ProductsListComponent {
-    readonly productsMock: Product[] = productsMock;
+    readonly productsMock = productsMock;
 
     onSelectedForBuy(productId: string) {
         console.info(`${productId} selected for  buy`);
