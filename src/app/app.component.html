@@ -6,7 +6,4 @@
     [isSidenavOpened]="isSidenavOpenedStore"
     (isSidenavOpenedChange)="isSidenavOpenedStore = $event"
 ></app-sidenav> -->
-<div class="content">
-    <app-card [products]="productsMock[0]" (buyProduct)="addProductToCart($event)"></app-card>
-</div>
 <app-products-list></app-products-list>

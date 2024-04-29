@@ -7,19 +7,21 @@ import {Product} from '../../../shared/products/product.interface';
     styleUrls: ['./card.component.css'],
 })
 export class CardComponent {
-    @Input() products: Product | null = null;
+    @Input() product: Product | null = null;
 
-    @Output() buyProduct = new EventEmitter<number>();
+    @Output() buyProduct = new EventEmitter<{quantity: number; productId: string}>();
 
     productQuantity = 0;
 
-    onClick(event: Event, num: number) {
+    onClick(event: Event, productId: string) {
         event.stopPropagation();
-        this.productQuantity += num;
-        this.buyProduct.emit(this.productQuantity);
+        this.productQuantity += 1;
+        this.buyProduct.emit({quantity: this.productQuantity, productId});
     }
 
     getRatingStars(rating: number): number[] {
-        return new Array(rating);
+        const stars = Math.floor(rating);
+
+        return new Array(stars);
     }
 }

@@ -8,4 +8,8 @@ import {productsMock} from '../../shared/products/products.mock';
 })
 export class ProductsListComponent {
     readonly productsMock = productsMock;
+
+    addProductToCart({quantity, productId}: {quantity: number; productId: string}) {
+        console.log(`товар ${productId} добавлен в корзину в количестве: ${quantity} штук`); // eslint-disable-line
+    }
 }
