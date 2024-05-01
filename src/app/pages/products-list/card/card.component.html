@@ -1,29 +1,29 @@
 <mat-card class="card">
     <mat-card-header>
-        <mat-card-title>{{ product.name }}</mat-card-title>
-        <mat-card-subtitle>{{ product.price }} $</mat-card-subtitle>
+        <mat-card-title>{{ product!.name }}</mat-card-title>
+        <mat-card-subtitle>{{ product!.price }} $</mat-card-subtitle>
     </mat-card-header>
     <div class="galerey">
         <button mat-icon-button disabled>
             <mat-icon>chevron_left</mat-icon>
         </button>
-        <img mat-card-image alt="Product photo" [src]="product.images[0].url" />
+        <img mat-card-image alt="Product photo" [src]="product!.images[0].url" />
         <button mat-icon-button disabled>
             <mat-icon>chevron_right</mat-icon>
         </button>
     </div>
     <mat-card-content>
-        <p>Отзывы: {{ product.feedbacksCount }}</p>
+        <p>Отзывы: {{ product!.feedbacksCount }}</p>
         <div class="raiting">
             Рейтинг:
-            <mat-icon [ngClass]="{'star-active': product.rating >= 0.5}">star</mat-icon>
-            <mat-icon [ngClass]="{'star-active': product.rating >= 1.5}">star</mat-icon>
-            <mat-icon [ngClass]="{'star-active': product.rating >= 2.5}">star</mat-icon>
-            <mat-icon [ngClass]="{'star-active': product.rating >= 3.5}">star</mat-icon>
-            <mat-icon [ngClass]="{'star-active': product.rating >= 4.5}">star</mat-icon>
+            <mat-icon [class.star-active]="product!.rating >= 0.5">star</mat-icon>
+            <mat-icon [class.star-active]="product!.rating >= 1.5">star</mat-icon>
+            <mat-icon [class.star-active]="product!.rating >= 2.5">star</mat-icon>
+            <mat-icon [class.star-active]="product!.rating >= 3.5">star</mat-icon>
+            <mat-icon [class.star-active]="product!.rating >= 4.5">star</mat-icon>
         </div>
     </mat-card-content>
     <mat-card-actions class="mat-card-actions-align-end">
-        <button mat-button (click)="buyProduct(product); (false)">Buy</button>
+        <button mat-button (click)="buyProduct($event, product)">Buy</button>
     </mat-card-actions>
 </mat-card>
