@@ -16,19 +16,9 @@ export class CardComponent {
         this.selectedForBuy.emit(this.product?._id);
     }
 
-    showIcon(rating: number | undefined, index: number): boolean {
-        let isClassActive = false;
+    showIcon(index: number): boolean | number | undefined {
+        const rating = this.product?.rating;
 
-        if (!rating) {
-            return isClassActive;
-        }
-
-        if (rating >= index + 1) {
-            isClassActive = true;
-        } else {
-            isClassActive = false;
-        }
-
-        return isClassActive;
+        return rating && rating >= index + 1;
     }
 }
