@@ -8,4 +8,9 @@ import {productsMock} from '../../shared/products/products.mock';
 })
 export class ProductsListComponent {
     readonly productsMock = productsMock;
+
+    buyProduct(_id: string) {
+        // eslint-disable-next-line no-console
+        console.log('купить продукт с id:', _id);
+    }
 }
