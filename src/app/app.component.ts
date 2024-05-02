@@ -9,7 +9,6 @@ import {applicationConfigMock} from './shared/application-config/application-con
 export class AppComponent {
     readonly aplicationConfigMock = applicationConfigMock;
     isSidenavOpenedStore = false;
-    productId!: string;
     onMenuClick(_event: Event) {
         this.isSidenavOpenedStore = !this.isSidenavOpenedStore;
     }
