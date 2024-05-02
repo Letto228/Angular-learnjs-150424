@@ -1,4 +1,20 @@
-<!-- <app-card [product]="productsMock[0]"></app-card>
-<app-card [product]="productsMock[1]"></app-card>
-<app-card [product]="productsMock[2]"></app-card>
-<app-card [product]="productsMock[3]"></app-card> -->
+<app-card
+    [product]="productsMock[0]"
+    (cardClick)="cardClick($event)"
+    (buyClick)="buyClick($event)"
+></app-card>
+<app-card
+    [product]="productsMock[1]"
+    (cardClick)="cardClick($event)"
+    (buyClick)="buyClick($event)"
+></app-card>
+<app-card
+    [product]="productsMock[2]"
+    (cardClick)="cardClick($event)"
+    (buyClick)="buyClick($event)"
+></app-card>
+<app-card
+    [product]="productsMock[3]"
+    (cardClick)="cardClick($event)"
+    (buyClick)="buyClick($event)"
+></app-card>
