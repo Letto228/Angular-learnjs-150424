@@ -8,20 +8,24 @@ import {Product} from 'src/app/shared/products/product.interface';
 })
 export class CardComponent {
     @Input() product: Product | null = null;
-    @Output() readonly buyedProduct: EventEmitter<Product | null> = new EventEmitter();
+    @Output() readonly buyedProduct = new EventEmitter();
 
     getProductImageUrl(index: number): string | null {
-        return this.product?.images && this.product?.images?.length > index
-            ? this.product?.images[index]?.url
-            : null;
+        if (!this.product?.images) {
+            return null;
+        }
+
+        const images = this.product.images;
+
+        return images.length > index ? images[index].url : null;
     }
 
     getRating(index: number): boolean {
-        return this.product?.rating ? this.product?.rating >= index : false;
+        return this.product?.rating ? this.product.rating >= index : false;
     }
 
     onBuyClick() {
-        this.buyedProduct.emit(this.product);
+        this.buyedProduct.emit(this.product?._id);
         // eslint-disable-next-line no-console
         console.log(this.product?.name?.concat(': "Меня выбрали! Я супер!"'));
     }
