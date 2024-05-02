@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {productsMock} from '../../shared/products/products.mock';
+import {Product} from '../../shared/products/product.interface';
 
 @Component({
     selector: 'app-products-list',
@@ -7,5 +8,10 @@ import {productsMock} from '../../shared/products/products.mock';
     styleUrls: ['./products-list.component.css'],
 })
 export class ProductsListComponent {
-    readonly productsMock = productsMock;
+    readonly products = productsMock;
+
+    onProductBuy(id: Product['_id']) {
+        // eslint-disable-next-line no-console
+        console.log(id);
+    }
 }
