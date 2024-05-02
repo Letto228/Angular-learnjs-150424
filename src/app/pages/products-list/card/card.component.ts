@@ -10,11 +10,11 @@ export class CardComponent {
     @Input() product: Product | null = null;
     @Output() readonly buy = new EventEmitter<string>();
 
-    buyProduct(event: MouseEvent, product: Product | null) {
+    buyProduct(event: MouseEvent) {
         event.stopPropagation();
 
-        if (product) {
-            this.buy.emit(product._id);
+        if (this.product) {
+            this.buy.emit(this.product._id);
         }
     }
 }
