@@ -3,10 +3,6 @@ import {Product} from 'src/app/shared/products/product.interface';
 
 const MAX_RATING = 5;
 
-interface RatingArr {
-    active: boolean;
-}
-
 @Component({
     selector: 'app-card',
     templateUrl: './card.component.html',
@@ -15,24 +11,14 @@ interface RatingArr {
 export class CardComponent {
     @Input() product: Product | null = null;
 
-    @Output() buyProduct: EventEmitter<Product | null> = new EventEmitter();
+    @Output() readonly buyProduct = new EventEmitter<Product | null>();
 
-    get cardImageUrl() {
+    get cardImageUrl(): string | undefined {
         return this.product?.images[0].url;
     }
 
-    getRating(ratingNum: number): RatingArr[] {
-        const ratingArr: RatingArr[] = [];
-
-        for (let i = 1; i <= MAX_RATING; i++) {
-            const ratingObj = {
-                active: i <= ratingNum,
-            };
-
-            ratingArr.push(ratingObj);
-        }
-
-        return ratingArr;
+    getRating(ratingNum: number): boolean[] {
+        return Array.from({length: MAX_RATING}, (_value, index) => index + 1 <= ratingNum);
     }
 
     onBuyClick(event: MouseEvent, product: Product | null): void {
