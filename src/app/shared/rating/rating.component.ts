@@ -1,4 +1,4 @@
-import {Component, Input, HostBinding} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
     selector: 'app-rating',
@@ -6,5 +6,5 @@ import {Component, Input, HostBinding} from '@angular/core';
     styleUrls: ['./rating.component.css'],
 })
 export class RatingComponent {
-    @Input() @HostBinding('style.--rating') rating!: number;
+    @Input() rating!: number;
 }
