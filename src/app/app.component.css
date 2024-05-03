@@ -3,15 +3,3 @@
     display: flex;
     flex-direction: column;
 }
-
-/* app-custom-element {
-    ::ng-deep span {
-        font-size: 40px;
-        color: brown !important;
-    }
-} */
-
-/* ::ng-deep span {
-    font-size: 40px;
-    color: brown !important;
-} */

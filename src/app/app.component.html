@@ -2,8 +2,6 @@
     [aplicationConfig]="aplicationConfigMock"
     (menuClick)="sidenav.toggleSidenavOpened()"
 ></app-header>
-<span>Hello</span>
-<!-- <app-sidenav #sidenav [navigationTemplate]="navigationTemplate"> -->
 <app-sidenav #sidenav>
     <ng-template #navigationTemplate>
         {{ aplicationConfigMock.title }}
@@ -14,7 +12,3 @@
         </mat-list>
     </ng-template>
 </app-sidenav>
-<!-- <app-sidenav
-    [isSidenavOpened]="isSidenavOpenedStore"
-    (isSidenavOpenedChange)="isSidenavOpenedStore = $event"
-></app-sidenav> -->
