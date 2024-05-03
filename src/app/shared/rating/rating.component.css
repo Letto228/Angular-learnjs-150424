@@ -7,11 +7,13 @@
     --percent: calc(var(--rating) / 5 * 100%);
     display: flex;
     align-items: center;
-    font-size: var(--star-size);
     line-height: 1;
 }
 .stars::before {
     content: '★★★★★';
+    font-size: var(--star-size);
+    margin-left: 5px;
+    margin-right: 5px;
     background: linear-gradient(
         90deg,
         var(--star-background) var(--percent),
@@ -20,8 +22,4 @@
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-.stars::after {
-    content: attr(data-rating);
-    font-size: 14px;
 }
