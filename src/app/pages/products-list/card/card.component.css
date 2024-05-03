@@ -7,7 +7,7 @@
     background-size: cover;
 }
 
-mat-card-content::ng-deep {
+mat-card-content {
     p {
         margin-top: 1em;
     }
