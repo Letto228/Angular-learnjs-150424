@@ -1,3 +1,5 @@
-<ng-container *ngFor="let product of productsMock">
-    <app-card [product]="product" (buyClicked)="addProductToCart($event)"></app-card>
-</ng-container>
+<app-card
+    *ngFor="let product of productsMock"
+    [product]="product"
+    (buyClicked)="addProductToCart($event)"
+></app-card>

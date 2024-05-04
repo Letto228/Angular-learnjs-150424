@@ -8,9 +8,9 @@ import {Product} from '../../../shared/products/product.interface';
 })
 export class CardComponent {
     @Input() product: Product | undefined;
-    @Output() buyClicked = new EventEmitter();
+    @Output() buyClicked = new EventEmitter<string | undefined>();
 
-    get imageUrl() {
+    get imageUrl(): string | undefined {
         return this.product?.images[0].url;
     }
 
