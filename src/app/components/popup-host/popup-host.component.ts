@@ -23,16 +23,16 @@ export class PopupHostComponent {
 
     @Output() readonly closeModal = new EventEmitter<void>();
 
-    closeTemplate = false;
+    isHidden = true;
 
     insertModalTemplate(templateRef: TemplateRef<unknown>) {
-        this.closeTemplate = true;
+        this.isHidden = false;
         this.viewport?.clear();
         this.viewport?.createEmbeddedView(templateRef);
     }
 
     onClose(): void {
         this.viewport?.clear();
-        this.closeTemplate = false;
+        this.isHidden = true;
     }
 }
