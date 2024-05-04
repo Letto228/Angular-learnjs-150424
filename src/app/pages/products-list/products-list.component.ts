@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Product} from 'src/app/shared/products/product.interface';
 import {productsMock} from '../../shared/products/products.mock';
 
 @Component({
@@ -9,7 +10,7 @@ import {productsMock} from '../../shared/products/products.mock';
 export class ProductsListComponent {
     readonly productsMock = productsMock;
 
-    addProductToCart({quantity, productId}: {quantity: number; productId: string}) {
-        console.log(`товар ${productId} добавлен в корзину в количестве: ${quantity} штук`); // eslint-disable-line
+    addProductToCart(product: Product) {
+        console.log(`товар ${product._id} добавлен в корзину`); // eslint-disable-line
     }
 }

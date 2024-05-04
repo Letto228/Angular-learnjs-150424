@@ -7,9 +7,7 @@
         <button mat-icon-button disabled>
             <mat-icon>chevron_left</mat-icon>
         </button>
-        <ng-container *ngIf="product">
-            <img mat-card-image alt="Product photo" [src]="product.images[0].url" />
-        </ng-container>
+        <img mat-card-image alt="Product photo" [src]="product?.images?.[0]?.url" />
         <button mat-icon-button disabled>
             <mat-icon>chevron_right</mat-icon>
         </button>
@@ -18,14 +16,12 @@
         <p>Отзывы: {{ product?.feedbacksCount }}</p>
         <div class="raiting">
             Рейтинг:
-            <ng-container *ngIf="product">
-                <mat-icon *ngFor="let item of getRatingStars(product.rating)" class="star-active">
-                    star
-                </mat-icon>
-            </ng-container>
+            <mat-icon *ngFor="let item of getRatingStars(product?.rating)" class="star-active">
+                star
+            </mat-icon>
         </div>
     </mat-card-content>
     <mat-card-actions class="mat-card-actions-align-end">
-        <button mat-button (click)="onClick($event, product!._id)">Buy</button>
+        <button mat-button (click)="onClick($event)">Buy</button>
     </mat-card-actions>
 </mat-card>

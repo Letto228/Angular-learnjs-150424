@@ -9,19 +9,23 @@ import {Product} from '../../../shared/products/product.interface';
 export class CardComponent {
     @Input() product: Product | null = null;
 
-    @Output() buyProduct = new EventEmitter<{quantity: number; productId: string}>();
+    @Output() readonly buyProduct = new EventEmitter<Product>();
 
-    productQuantity = 0;
-
-    onClick(event: Event, productId: string) {
+    onClick(event: Event) {
         event.stopPropagation();
-        this.productQuantity += 1;
-        this.buyProduct.emit({quantity: this.productQuantity, productId});
+
+        if (this.product) {
+            this.buyProduct.emit(this.product);
+        }
     }
 
-    getRatingStars(rating: number): number[] {
-        const stars = Math.floor(rating);
+    getRatingStars(rating: number | undefined): number[] {
+        if (typeof rating === 'number') {
+            const stars = Math.floor(rating);
 
-        return new Array(stars);
+            return new Array(stars);
+        }
+
+        return []; // Возвращает пустой массив, если рейтинг не определен
     }
 }
