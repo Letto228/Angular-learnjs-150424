@@ -16,9 +16,12 @@
         <p>Отзывы: {{ product?.feedbacksCount }}</p>
         <div *ngIf="product" class="raiting">
             Рейтинг:
-            <ng-container *ngFor="let isActive of getRating(product.rating)">
-                <mat-icon [class.star-active]="isActive">star</mat-icon>
-            </ng-container>
+            <mat-icon
+                *ngFor="let isActive of getRating(product.rating)"
+                [class.star-active]="isActive"
+            >
+                star
+            </mat-icon>
         </div>
     </mat-card-content>
     <mat-card-actions class="mat-card-actions-align-end">

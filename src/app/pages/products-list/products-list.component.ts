@@ -11,9 +11,9 @@ import {productsMock} from '../../shared/products/products.mock';
 export class ProductsListComponent {
     readonly productsMock = productsMock;
 
-    constructor(private readonly _snackBar: MatSnackBar) {}
+    constructor(private readonly snackBar: MatSnackBar) {}
 
     onBuyProduct(product: Product | null): void {
-        this._snackBar.open(`${product?.name} добавлен(a) в корзину`, 'OK');
+        this.snackBar.open(`${product?.name} добавлен(a) в корзину`, 'OK');
     }
 }
