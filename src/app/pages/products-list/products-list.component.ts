@@ -11,6 +11,7 @@ export class ProductsListComponent {
     readonly productsMock = productsMock;
 
     addToCart(item: Product) {
+        // eslint-disable-next-line no-console
         console.log(item, 'item was bought');
     }
 }
