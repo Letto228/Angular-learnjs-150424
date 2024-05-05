@@ -1,0 +1,40 @@
+.backdrop-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    padding: 50px;
+    background: rgb(248, 225, 225);
+    color: black;
+    z-index: 1;
+    box-sizing: border-box;
+    border-radius: 5%;
+}
+
+.popup-content {
+    position: absolute;
+}
+
+.btn {
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+    display: block;
+    box-sizing: border-box;
+}
+
+.hidden {
+    visibility: hidden;
+}

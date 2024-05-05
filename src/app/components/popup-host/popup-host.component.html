@@ -1,0 +1,5 @@
+<div class="backdrop-container" [class.hidden]="isHidden"></div>
+<div class="popup" [class.hidden]="isHidden">
+    <ng-container #viewPort class="popup-content"></ng-container>
+    <button mat-stroked-button class="btn" (click)="onClose()">Close</button>
+</div>
