@@ -1,0 +1,6 @@
+<div #viewport class="popup-overlay" [class.is-closed]="isClosed">
+    <div class="popup-container">
+        <button type="button" (click)="closePopup()">close</button>
+        <ng-container #content></ng-container>
+    </div>
+</div>

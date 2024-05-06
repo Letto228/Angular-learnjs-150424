@@ -1,0 +1,22 @@
+.popup-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.15);
+    z-index: 100;
+}
+
+.popup-container {
+    padding: 16px;
+    background-color: #fff;
+    border-radius: 16px;
+    min-width: 200px;
+}
+
+.is-closed {
+    display: none;
+}
