@@ -11,7 +11,6 @@ export class AppComponent {
 
     switchTemplate = false;
     closeTemplate = true;
-
     constructor() {
         setTimeout(() => {
             this.switchTemplate = !this.switchTemplate;

@@ -2,6 +2,8 @@
     [aplicationConfig]="aplicationConfigMock"
     (menuClick)="sidenav.toggleSidenavOpened()"
 ></app-header>
+<span>Hello</span>
+<!-- <app-sidenav #sidenav [navigationTemplate]="navigationTemplate"></app-sidenav> -->
 <app-sidenav #sidenav>
     <ng-template #navigationTemplate>
         {{ aplicationConfigMock.title }}
@@ -13,23 +15,28 @@
     </ng-template>
 </app-sidenav>
 
-<!-- Homework stand -->
-
 <!-- Switch template -->
 
 <!-- <app-popup-host [template]="switchTemplate ? first : second"></app-popup-host> -->
 
-<!-- or -->
-
 <!-- Close template -->
 
-<!-- <app-popup-host [template]="!closeTemplate ? first : null"></app-popup-host> -->
+<app-popup-host [template]="!closeTemplate ? first : null"></app-popup-host>
 
-<!-- <ng-template #first>
+<ng-template #first>
     <h2>First</h2>
     <p>Is first template</p>
 </ng-template>
 <ng-template #second>
     <h2>Second</h2>
     <p>Is second template</p>
+</ng-template>
+
+<!-- <ng-template #navigationTemplate>
+  {{ aplicationConfigMock.title }}
+  <mat-list role="list">
+      <mat-list-item role="listitem">Item 1</mat-list-item>
+      <mat-list-item role="listitem">Item 2</mat-list-item>
+      <mat-list-item role="listitem">Item 3</mat-list-item>
+  </mat-list>
 </ng-template> -->

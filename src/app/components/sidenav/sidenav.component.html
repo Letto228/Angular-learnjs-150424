@@ -3,7 +3,20 @@
         <ng-container #viewport></ng-container>
     </mat-drawer>
 
-    <div class="example-sidenav-content">
-        <button type="button" mat-button (click)="toggleSidenavOpened()">Toggle sidenav</button>
+    <div #divElement class="example-sidenav-content">
+        {{ divElement.classList }}
+        <!-- <button type="button" mat-button (click)="toggleSidenavOpened()">Toggle sidenav</button> -->
+        <!-- <button #button type="button" mat-button (click)="drawer.toggle()">Toggle sidenav</button> -->
+        <!--  <button #button type="button" mat-button (click)="toggleSidenavOpened()">
+            Toggle sidenav
+        </button> -->
+        <button
+            #button
+            type="button"
+            mat-button
+            (click)="insertNavigationTemplate(navigationTemplateStore!)"
+        >
+            Generate
+        </button>
     </div>
 </mat-drawer-container>
