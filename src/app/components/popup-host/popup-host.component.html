@@ -1,0 +1,8 @@
+<div class="back" [class.hidden]="isHidden"></div>
+<div class="modal" [class.hidden]="isHidden">
+    <ng-container #modal></ng-container>
+
+    <div class="btn-container">
+        <button class="button" (click)="clearModal(true)">Close</button>
+    </div>
+</div>
