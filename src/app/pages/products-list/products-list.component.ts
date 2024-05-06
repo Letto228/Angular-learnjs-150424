@@ -9,7 +9,7 @@ import {productsMock} from '../../shared/products/products.mock';
 export class ProductsListComponent {
     readonly productsMock = productsMock;
 
-    addProductToCart(productId: string | undefined) {
+    addProductToCart(productId: string) {
         // eslint-disable-next-line no-console
         console.log('addProductToCart', productId);
     }

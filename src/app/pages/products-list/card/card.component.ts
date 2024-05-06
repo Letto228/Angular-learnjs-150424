@@ -8,7 +8,7 @@ import {Product} from '../../../shared/products/product.interface';
 })
 export class CardComponent {
     @Input() product: Product | undefined;
-    @Output() buyClicked = new EventEmitter<string | undefined>();
+    @Output() buyClicked = new EventEmitter<string>();
 
     get imageUrl(): string | undefined {
         return this.product?.images[0].url;
@@ -16,6 +16,9 @@ export class CardComponent {
 
     onBuyClicked(event: Event) {
         event.preventDefault();
-        this.buyClicked.emit(this.product?._id);
+
+        if (this.product) {
+            this.buyClicked.emit(this.product._id);
+        }
     }
 }
