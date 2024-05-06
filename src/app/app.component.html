@@ -2,34 +2,26 @@
     [aplicationConfig]="aplicationConfigMock"
     (menuClick)="sidenav.toggleSidenavOpened()"
 ></app-header>
+{{ getCount() }}
 <app-sidenav #sidenav>
-    <ng-template #navigationTemplate>
-        {{ aplicationConfigMock.title }}
+    <!-- <ng-template #navigationTemplate> -->
+    <input />
+    <!-- <input (keydown)="onKeyDown()"/> -->
+
+    <ng-container ngProjectAs="app-sidenav-content">
+        {{ title }}
         <mat-list role="list">
             <mat-list-item role="listitem">Item 1</mat-list-item>
             <mat-list-item role="listitem">Item 2</mat-list-item>
             <mat-list-item role="listitem">Item 3</mat-list-item>
         </mat-list>
-    </ng-template>
+        <mat-list role="list">
+            <mat-list-item role="listitem">Item -1</mat-list-item>
+            <mat-list-item role="listitem">Item -2</mat-list-item>
+            <mat-list-item role="listitem">Item -3</mat-list-item>
+        </mat-list>
+    </ng-container>
+    <!-- </ng-template> -->
 </app-sidenav>
 
-<!-- Homework stand -->
-
-<!-- Switch template -->
-
-<!-- <app-popup-host [template]="switchTemplate ? first : second"></app-popup-host> -->
-
-<!-- or -->
-
-<!-- Close template -->
-
-<app-popup-host [template]="!closeTemplate ? first : null"></app-popup-host>
-
-<ng-template #first>
-    <h2>First</h2>
-    <p>Is first template</p>
-</ng-template>
-<ng-template #second>
-    <h2>Second</h2>
-    <p>Is second template</p>
-</ng-template>
+<app-popup-host></app-popup-host>

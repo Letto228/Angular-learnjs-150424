@@ -1,10 +1,20 @@
-import {Component, ContentChild, TemplateRef, ViewChild, ViewContainerRef} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    ContentChild,
+    TemplateRef,
+    ViewChild,
+    ViewContainerRef,
+    inject,
+} from '@angular/core';
 import {MatDrawer} from '@angular/material/sidenav';
 
 @Component({
     selector: 'app-sidenav',
     templateUrl: './sidenav.component.html',
     styleUrls: ['./sidenav.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidenavComponent {
     @ViewChild(MatDrawer, {static: true}) private readonly drawerComponent: MatDrawer | undefined;
@@ -15,6 +25,11 @@ export class SidenavComponent {
     @ContentChild('navigationTemplate', {static: true})
     private readonly navigationTemplate: TemplateRef<unknown> | undefined;
 
+    private readonly changeDetectorRef = inject(ChangeDetectorRef);
+
+    selectChildrenView = 'mat-list';
+
+    // constructor(private readonly changeDetectorRef: ChangeDetectorRef) {
     constructor() {
         setTimeout(() => {
             if (this.navigationTemplate) {
@@ -25,6 +40,7 @@ export class SidenavComponent {
 
     toggleSidenavOpened() {
         this.drawerComponent?.toggle();
+        this.changeDetectorRef.markForCheck();
     }
 
     insertNavigationTemplate(templateRef: TemplateRef<unknown>) {
