@@ -10,11 +10,10 @@ export class PopupHostComponent {
     private readonly modal: ViewContainerRef | undefined;
 
     @Input() set template(templateRef: TemplateRef<unknown> | null) {
+        this.clearModal(!templateRef);
+
         if (templateRef) {
-            this.clearModal(false);
             this.modal?.createEmbeddedView(templateRef);
-        } else {
-            this.clearModal(true);
         }
     }
 
