@@ -20,14 +20,20 @@ export class PopupHostComponent {
     private readonly vc: ViewContainerRef | undefined;
 
     @Input()
-    set template(tmpl: TemplateRef<unknown> | null) {
-        if (tmpl) {
-            this.vc?.clear();
-            this.vc?.createEmbeddedView(tmpl);
+    set template(templateRef: TemplateRef<unknown> | null) {
+        this.vc?.clear();
+
+        if (templateRef) {
+            this.insertPopupTemplate(templateRef);
             this.dialog?.nativeElement.showModal();
-        } else {
-            this.vc?.clear();
-            this.dialog?.nativeElement.close();
+
+            return;
         }
+
+        this.dialog?.nativeElement.close();
+    }
+
+    insertPopupTemplate(templateRef: TemplateRef<unknown>) {
+        this.vc?.createEmbeddedView(templateRef);
     }
 }
