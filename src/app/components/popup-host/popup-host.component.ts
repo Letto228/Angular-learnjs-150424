@@ -13,23 +13,25 @@ export class PopupHostComponent {
     private readonly content: ViewContainerRef | undefined;
 
     @Input() set template(templateRef: TemplateRef<unknown> | null) {
+        this.content?.clear();
+
         if (templateRef) {
             this.insertTemplate(templateRef);
-        } else {
-            this.closePopup();
+
+            return;
         }
+
+        this.closePopup();
     }
 
     isClosed = true;
 
     insertTemplate(templateRef: TemplateRef<unknown>) {
         this.isClosed = false;
-        this.content?.clear();
         this.content?.createEmbeddedView(templateRef);
     }
 
     closePopup() {
-        this.content?.clear();
         this.isClosed = true;
     }
 }
