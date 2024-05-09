@@ -7,11 +7,12 @@ import {Product} from '../../../shared/products/product.interface';
     styleUrls: ['./card.component.css'],
 })
 export class CardComponent {
-    @Input() product: Product | undefined = undefined;
+    @Input() product: Product | undefined;
 
-    @Output() emitPurchasedProduct = new EventEmitter<Product | undefined>();
+    @Output() readonly emitPurchasedProduct = new EventEmitter<Product>();
 
-    onBuyButtonClick() {
+    onBuyButtonClick(event: Event) {
+        event.preventDefault();
         this.emitPurchasedProduct.emit(this.product);
     }
 }
