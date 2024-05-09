@@ -9,7 +9,7 @@ import {Product} from '../../../shared/products/product.interface';
 export class CardComponent {
     @Input() product: Product | undefined = undefined;
 
-    @Output() emitPurchasedProduct = new EventEmitter<Product>();
+    @Output() emitPurchasedProduct = new EventEmitter<Product | undefined>();
 
     onBuyButtonClick() {
         this.emitPurchasedProduct.emit(this.product);
