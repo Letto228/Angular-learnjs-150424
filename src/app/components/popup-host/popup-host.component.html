@@ -1,6 +1,6 @@
 <div class="backdrop" [class.hidden]="isHidden"></div>
 <div class="modal" [class.hidden]="isHidden">
-    <div #viewport></div>
+    <ng-container #viewport></ng-container>
     <div class="btn-container">
         <button mat-raised-button color="primary" (click)="initViewport(true)">Close</button>
     </div>

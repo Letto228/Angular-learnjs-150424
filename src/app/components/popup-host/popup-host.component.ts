@@ -18,18 +18,22 @@ export class PopupHostComponent {
     private readonly viewport: ViewContainerRef | undefined;
 
     @Input() set template(templateRef: TemplateRef<unknown> | null) {
-        if (templateRef) {
-            this.insertModalTemplate(templateRef);
-        } else {
+        if (!templateRef) {
             this.initViewport(true);
         }
+
+        this.insertModalTemplate(templateRef);
     }
 
     @Output() readonly closeModal = new EventEmitter<void>();
 
     isHidden = true;
 
-    insertModalTemplate(templateRef: TemplateRef<unknown>) {
+    insertModalTemplate(templateRef: TemplateRef<unknown> | null): void {
+        if (!templateRef) {
+            return;
+        }
+
         this.initViewport(false);
         this.viewport?.createEmbeddedView(templateRef);
     }
