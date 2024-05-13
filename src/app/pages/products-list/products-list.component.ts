@@ -13,6 +13,13 @@ export class ProductsListComponent {
 
     products: Product[] | null = null;
 
+    // For easy
+    name = 'Мышь';
+
+    // For hard
+    readonly propertyName = 'feedbacksCount' as const; // keyof Product
+    searchPropertyValue = 5;
+
     constructor() {
         setTimeout(() => {
             this.products = productsMock;
