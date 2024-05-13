@@ -2,14 +2,9 @@
     [aplicationConfig]="aplicationConfigMock"
     (menuClick)="sidenav.toggleSidenavOpened()"
 ></app-header>
-{{ getCount() }}
 <app-sidenav #sidenav>
-    <!-- <ng-template #navigationTemplate> -->
-    <input />
-    <!-- <input (keydown)="onKeyDown()"/> -->
-
     <ng-container ngProjectAs="app-sidenav-content">
-        {{ title }}
+        {{ aplicationConfigMock.title }}
         <mat-list role="list">
             <mat-list-item role="listitem">Item 1</mat-list-item>
             <mat-list-item role="listitem">Item 2</mat-list-item>
@@ -21,7 +16,6 @@
             <mat-list-item role="listitem">Item -3</mat-list-item>
         </mat-list>
     </ng-container>
-    <!-- </ng-template> -->
 </app-sidenav>
 
 <app-popup-host></app-popup-host>
