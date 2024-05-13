@@ -14,8 +14,8 @@ export class CardComponent {
     @Input() product: Product | null = null;
 
     get firstProductImage(): string {
-        if (this.product?.images && this.product?.images.length > 0) {
-            return this.product?.images[0].url;
+        if (this.product?.images.length) {
+            return this.product.images[0].url;
         }
 
         return '';
@@ -25,7 +25,9 @@ export class CardComponent {
         this.cardClick.emit(value);
     }
 
-    buyClickEvent(value: string) {
+    buyClickEvent(event: MouseEvent, value: string) {
+        event.preventDefault();
+        event.stopPropagation();
         this.buyClick.emit(value);
     }
 }
