@@ -2,6 +2,7 @@
     [aplicationConfig]="aplicationConfigMock"
     (menuClick)="sidenav.toggleSidenavOpened()"
 ></app-header>
+<!-- <app-sidenav  #sidenav [testText]="'Hello'" [testText1]="'Hello 1'"> -->
 <app-sidenav #sidenav>
     <ng-container ngProjectAs="app-sidenav-content">
         {{ aplicationConfigMock.title }}
@@ -16,6 +17,8 @@
             <mat-list-item role="listitem">Item -3</mat-list-item>
         </mat-list>
     </ng-container>
+
+    <app-products-list></app-products-list>
 </app-sidenav>
 
 <app-popup-host></app-popup-host>
