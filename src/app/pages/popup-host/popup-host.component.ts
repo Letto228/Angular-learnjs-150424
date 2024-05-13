@@ -15,11 +15,10 @@ export class PopupHostComponent {
     @Input() set template(tmpl: TemplateRef<any> | null) {
         this.viewport?.clear();
 
+        this.isHidden = !tmpl;
+
         if (tmpl) {
-            this.isHidden = false;
             this.viewport?.createEmbeddedView(tmpl);
-        } else {
-            this.isHidden = true;
         }
     }
 
