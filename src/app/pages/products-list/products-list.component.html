@@ -82,7 +82,7 @@
 ></app-card> -->
 
 <!-- Hard вариант со структурной директивой -->
-<!-- <ng-template
+<ng-template
     let-productsFromNgIf
     [ngIf]="products | filterByProperty: propertyName : searchPropertyValue"
 >
@@ -111,4 +111,4 @@
         [product]="productsFromNgIf[4] || null"
         (buy)="onProductBuy($event)"
     ></app-card>
-</ng-template> -->
+</ng-template>
