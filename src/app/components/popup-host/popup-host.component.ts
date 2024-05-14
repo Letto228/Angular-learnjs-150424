@@ -6,22 +6,22 @@ import {Component, Input, TemplateRef, ViewChild, ViewContainerRef} from '@angul
     styleUrls: ['./popup-host.component.css'],
 })
 export class PopupHostComponent {
-    @ViewChild('viewport', {read: ViewContainerRef, static: true})
-    private readonly viewportViewContainer: ViewContainerRef | undefined;
+    @ViewChild('dialogHost', {read: ViewContainerRef, static: false})
+    private readonly dialogHostViewContainer: ViewContainerRef | undefined;
 
-    @Input() set template(template: TemplateRef<unknown> | null) {
-        this.updatePopupContent(template);
+    @Input() set dialogTemplate(template: TemplateRef<unknown> | null) {
+        this.showDialog(template);
     }
 
-    get isViewportClear(): boolean {
-        return !this.viewportViewContainer?.length;
+    get isDialogHostViewEmpty(): boolean {
+        return !this.dialogHostViewContainer?.length;
     }
 
-    private updatePopupContent(template: TemplateRef<unknown> | null) {
-        this.viewportViewContainer?.clear();
+    private showDialog(template: TemplateRef<unknown> | null) {
+        this.dialogHostViewContainer?.clear();
 
         if (template) {
-            this.viewportViewContainer?.createEmbeddedView(template);
+            this.dialogHostViewContainer?.createEmbeddedView(template);
         }
     }
 }

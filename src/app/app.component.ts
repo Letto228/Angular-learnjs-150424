@@ -8,25 +8,7 @@ import {applicationConfigMock} from './shared/application-config/application-con
 })
 export class AppComponent {
     readonly aplicationConfigMock = applicationConfigMock;
-
-    switchTemplate = false;
-    closeTemplate = true;
-
-    constructor() {
-        setTimeout(() => {
-            this.switchTemplate = !this.switchTemplate;
-            // or
-            this.closeTemplate = !this.closeTemplate;
-        }, 3000);
-        setTimeout(() => {
-            this.switchTemplate = !this.switchTemplate;
-            // or
-            this.closeTemplate = !this.closeTemplate;
-        }, 6000);
-        setTimeout(() => {
-            this.switchTemplate = !this.switchTemplate;
-            // or
-            this.closeTemplate = !this.closeTemplate;
-        }, 9000);
-    }
+    shouldShowDialog1 = false;
+    shouldShowDialog2 = false;
+    shouldShowDialog3 = false;
 }
