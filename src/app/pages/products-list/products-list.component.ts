@@ -19,6 +19,8 @@ export class ProductsListComponent {
     // For hard
     readonly propertyName = 'feedbacksCount' as const; // keyof Product
     searchPropertyValue = 5;
+    // readonly propertyName = 'name';
+    // searchPropertyValue = 'ланшет';
 
     constructor() {
         setTimeout(() => {
