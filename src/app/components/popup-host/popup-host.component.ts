@@ -12,9 +12,11 @@ export class PopupHostComponent {
     @Input() set popupTemplate(templateRef: TemplateRef<unknown> | null) {
         if (templateRef) {
             this.insertPopupTemplate(templateRef);
-        } else {
-            this.onClose();
+
+            return;
         }
+
+        this.onClose();
     }
 
     isHidden = true;
@@ -28,7 +30,7 @@ export class PopupHostComponent {
         this.togglePopup(true);
     }
 
-    togglePopup(isHidden: boolean) {
+    private togglePopup(isHidden: boolean) {
         this.viewPort?.clear();
         this.isHidden = isHidden;
     }
