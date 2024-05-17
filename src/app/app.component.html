@@ -2,7 +2,6 @@
     [aplicationConfig]="aplicationConfigMock"
     (menuClick)="sidenav.toggleSidenavOpened()"
 ></app-header>
-<!-- <app-sidenav  #sidenav [testText]="'Hello'" [testText1]="'Hello 1'"> -->
 <app-sidenav #sidenav>
     <ng-container ngProjectAs="app-sidenav-content">
         {{ aplicationConfigMock.title }}
