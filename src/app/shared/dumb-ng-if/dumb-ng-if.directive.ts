@@ -8,10 +8,6 @@ export class DumbNgIfDirective<T> {
     private readonly templateRef = inject<TemplateRef<DumbNgIfContext<T>>>(TemplateRef);
     private readonly viewContainerRef = inject(ViewContainerRef);
 
-    // constructor() {
-    //     this.viewContainerRef.createEmbeddedView(this.templateRef);
-    // }
-
     @Input() set appDumbNgIf(value: T) {
         const isContainerHasView = this.viewContainerRef.length;
 

@@ -1,11 +1,3 @@
-<!-- <app-card
-    class="card"
-    [product]="products?.[0] || null"
-    (buy)="onProductBuy($event)"
-></app-card> -->
-<!-- <ng-template [appDumbNgIf]="products$ | async" let-data="appDumbNgIf" let-name="name" let-default="$implicit"> -->
-<!-- <ng-template [appDumbNgIf]="products$ | async" let-data="appDumbNgIf" let-name="name" let-default> -->
 <ng-template let-default [ngIf]="products$ | async">
-    {{ default }}
     <app-card class="card" [product]="default[0]" (buy)="onProductBuy($event)"></app-card>
 </ng-template>
