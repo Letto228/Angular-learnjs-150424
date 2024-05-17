@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Product} from '../../shared/products/product.interface';
 import {productsMock} from '../../shared/products/products.mock';
 
@@ -8,9 +8,7 @@ import {productsMock} from '../../shared/products/products.mock';
     styleUrls: ['./products-list.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductsListComponent {
-    private readonly changeDetectorRef = inject(ChangeDetectorRef);
-
+export class ProductsListComponent implements OnInit {
     products: Product[] | null = null;
 
     // For easy
@@ -20,11 +18,8 @@ export class ProductsListComponent {
     readonly propertyName = 'feedbacksCount' as const; // keyof Product
     searchPropertyValue = 5;
 
-    constructor() {
-        setTimeout(() => {
-            this.products = productsMock;
-            this.changeDetectorRef.markForCheck();
-        }, 2000);
+    ngOnInit() {
+        this.products = productsMock;
     }
 
     onProductBuy(id: Product['_id']) {
