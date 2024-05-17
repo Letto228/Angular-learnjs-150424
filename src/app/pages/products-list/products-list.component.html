@@ -1,3 +1,16 @@
 <ng-template let-default [ngIf]="products$ | async">
+    <!-- Раскомментировать div при выполнении ДЗ -->
+    <!-- <div appScrollWithLoading class="scroll-container" (loadData)="onLoad($event)"> -->
+
     <app-card class="card" [product]="default[0]" (buy)="onProductBuy($event)"></app-card>
+    <app-card class="card" [product]="default[1]" (buy)="onProductBuy($event)"></app-card>
+    <app-card class="card" [product]="default[2]" (buy)="onProductBuy($event)"></app-card>
+    <app-card class="card" [product]="default[3]" (buy)="onProductBuy($event)"></app-card>
+    <app-card class="card" [product]="default[4]" (buy)="onProductBuy($event)"></app-card>
+    <app-card class="card" [product]="default[5]" (buy)="onProductBuy($event)"></app-card>
+    <app-card class="card" [product]="default[6]" (buy)="onProductBuy($event)"></app-card>
+    <app-card class="card" [product]="default[7]" (buy)="onProductBuy($event)"></app-card>
+    <app-card class="card" [product]="default[8]" (buy)="onProductBuy($event)"></app-card>
+
+    <!-- </div> -->
 </ng-template>
