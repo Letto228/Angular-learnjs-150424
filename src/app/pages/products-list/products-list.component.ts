@@ -14,7 +14,7 @@ export class ProductsListComponent {
     products: Product[] | null = null;
 
     // For easy
-    name = 'Мышь';
+    name = 'Планшет';
 
     // For hard
     readonly propertyName = 'feedbacksCount' as const; // keyof Product

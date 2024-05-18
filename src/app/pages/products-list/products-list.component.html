@@ -1,5 +1,5 @@
 <!-- Easy вариант с не красивым применением -->
-<!-- <app-card
+<app-card
     class="card"
     [product]="(products | productsFilter: name)?.[0] || null"
     (buy)="onProductBuy($event)"
@@ -23,7 +23,7 @@
     class="card"
     [product]="(products | productsFilter: name)?.[4] || null"
     (buy)="onProductBuy($event)"
-></app-card> -->
+></app-card>
 
 <!-- Easy вариант со структурной директивой -->
 <!-- <ng-template let-productsFromNgIf [ngIf]="products | productsFilter: name">
