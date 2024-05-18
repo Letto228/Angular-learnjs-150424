@@ -19,4 +19,9 @@ export class ProductsListComponent {
         // eslint-disable-next-line no-console
         console.log(id);
     }
+
+    onLoad(direction: string, num?: number | null) {
+        // eslint-disable-next-line no-console
+        console.log('ScrollTop is: ', num || 'less than 100px', 'direction is: ', direction);
+    }
 }
