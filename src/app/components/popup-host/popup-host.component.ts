@@ -6,7 +6,7 @@ import {Component, Input, TemplateRef, ViewChild, ViewContainerRef} from '@angul
     styleUrls: ['./popup-host.component.css'],
 })
 export class PopupHostComponent {
-    @ViewChild('dialogHost', {read: ViewContainerRef, static: false})
+    @ViewChild('dialogHost', {read: ViewContainerRef, static: true})
     private readonly dialogHostViewContainer: ViewContainerRef | undefined;
 
     @Input() set dialogTemplate(template: TemplateRef<unknown> | null) {

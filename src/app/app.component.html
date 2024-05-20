@@ -20,7 +20,10 @@
 </app-sidenav>
 
 <!-- Homework stand -->
-<app-popup-host [dialogTemplate]="getDialogToShow()"></app-popup-host>
+<app-popup-host
+    *ngIf="shouldShowDialog1 || shouldShowDialog2 || shouldShowDialog3"
+    [dialogTemplate]="getDialogToShow()"
+></app-popup-host>
 
 <ng-template #dialog1>
     <h2>Dialog-1</h2>
