@@ -5,31 +5,40 @@
 <app-sidenav #sidenav>
     <ng-template #navigationTemplate>
         {{ aplicationConfigMock.title }}
-        <mat-list role="list">
-            <mat-list-item role="listitem">Item 1</mat-list-item>
-            <mat-list-item role="listitem">Item 2</mat-list-item>
-            <mat-list-item role="listitem">Item 3</mat-list-item>
-        </mat-list>
+        <mat-action-list role="list">
+            <mat-list-item role="listitem" (click)="shouldShowDialog1 = true">
+                Show Dialog-1
+            </mat-list-item>
+            <mat-list-item role="listitem" (click)="shouldShowDialog2 = true">
+                Show Dialog-2
+            </mat-list-item>
+            <mat-list-item role="listitem" (click)="shouldShowDialog3 = true">
+                Show Dialog-3
+            </mat-list-item>
+        </mat-action-list>
     </ng-template>
 </app-sidenav>
 
 <!-- Homework stand -->
+<app-popup-host
+    *ngIf="shouldShowDialog1 || shouldShowDialog2 || shouldShowDialog3"
+    [dialogTemplate]="getDialogToShow()"
+></app-popup-host>
 
-<!-- Switch template -->
-
-<!-- <app-popup-host [template]="switchTemplate ? first : second"></app-popup-host> -->
-
-<!-- or -->
-
-<!-- Close template -->
-
-<!-- <app-popup-host [template]="!closeTemplate ? first : null"></app-popup-host> -->
-
-<!-- <ng-template #first>
-    <h2>First</h2>
-    <p>Is first template</p>
+<ng-template #dialog1>
+    <h2>Dialog-1</h2>
+    <p>Dialog-1 content</p>
+    <button (click)="shouldShowDialog1 = false">close</button>
 </ng-template>
-<ng-template #second>
-    <h2>Second</h2>
-    <p>Is second template</p>
-</ng-template> -->
+
+<ng-template #dialog2>
+    <h2>Dialog-2</h2>
+    <p>Dialog-2 content</p>
+    <button (click)="shouldShowDialog2 = false">close</button>
+</ng-template>
+
+<ng-template #dialog3>
+    <h2>Dialog-3</h2>
+    <p>Dialog-3 content</p>
+    <button (click)="shouldShowDialog3 = false">close</button>
+</ng-template>
