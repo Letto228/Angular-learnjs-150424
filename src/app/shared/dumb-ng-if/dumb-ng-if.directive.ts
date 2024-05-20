@@ -8,7 +8,7 @@ export class DumbNgIfDirective<T> {
     private readonly templateRef = inject<TemplateRef<DumbNgIfContext<T>>>(TemplateRef);
     private readonly viewContainerRef = inject(ViewContainerRef);
 
-    @Input() set appDumbNgIf(value: T) {
+    @Input() set appDumbNgIf(value: T | null | undefined) {
         const isContainerHasView = this.viewContainerRef.length;
 
         if (!isContainerHasView && value) {
@@ -25,5 +25,20 @@ export class DumbNgIfDirective<T> {
         if (isContainerHasView && !value) {
             this.viewContainerRef.clear();
         }
+    }
+
+    static ngTemplateContextGuard<T>(
+        _directive: DumbNgIfDirective<T>,
+        _context: unknown,
+    ): _context is DumbNgIfContext<T> {
+        return true;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    static ngTemplateGuard_appDumbNgIf<T>(
+        _directive: DumbNgIfDirective<T>,
+        _inputValue: unknown,
+    ): _inputValue is T {
+        return true;
     }
 }

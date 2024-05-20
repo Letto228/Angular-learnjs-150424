@@ -1,14 +1,24 @@
-<ng-template let-default [ngIf]="products$ | async">
-    <!-- Раскомментировать div при выполнении ДЗ -->
-    <div appScrollWithLoading class="scroll-container" (loadData)="onLoad($event)">
-        <app-card class="card" [product]="default[0]" (buy)="onProductBuy($event)"></app-card>
-        <app-card class="card" [product]="default[1]" (buy)="onProductBuy($event)"></app-card>
-        <app-card class="card" [product]="default[2]" (buy)="onProductBuy($event)"></app-card>
-        <app-card class="card" [product]="default[3]" (buy)="onProductBuy($event)"></app-card>
-        <app-card class="card" [product]="default[4]" (buy)="onProductBuy($event)"></app-card>
-        <app-card class="card" [product]="default[5]" (buy)="onProductBuy($event)"></app-card>
-        <app-card class="card" [product]="default[6]" (buy)="onProductBuy($event)"></app-card>
-        <app-card class="card" [product]="default[7]" (buy)="onProductBuy($event)"></app-card>
-        <app-card class="card" [product]="default[8]" (buy)="onProductBuy($event)"></app-card>
-    </div>
+<!-- <ng-template let-default [appDumbNgIf]="product">
+    {{product}} -->
+<!-- <ng-template let-products [ngIf]="products$ | async"> -->
+<!-- <ng-container *ngIf="products$ | async; let products"> -->
+<!-- <ng-container *ngIf="products$ | async; let products = $implicit"> -->
+<!-- <ng-container *ngIf="products$ | async; let products = ngIf"> -->
+<!-- <ng-container *ngIf="products$ | async; ngIf as products"> -->
+<!-- <ng-container *appDumbNgIf="(products$ | async) as products"> -->
+<ng-container *ngIf="products$ | async as products; else loader">
+    <!-- <ng-template ngFor [ngForOf]="products" let-product let-index="index" let-odd="odd" let-even="even" let-first="first" let-last="last" [ngForTrackBy]="trackBy"> -->
+    <!-- <app-card class="card" [product]="products[index]" (buy)="onProductBuy($event)"></app-card> -->
+    <app-card
+        *ngFor="let product of products; trackBy: trackBy; let index = index"
+        class="card"
+        [product]="product"
+        (buy)="onProductBuy($event)"
+    ></app-card>
+    <!-- </ng-template> -->
+</ng-container>
+<!-- </ng-template> -->
+
+<ng-template #loader>
+    <mat-spinner></mat-spinner>
 </ng-template>
