@@ -4,22 +4,23 @@ import {Pipe, PipeTransform} from '@angular/core';
     name: 'filterByProperty',
 })
 export class FilterByPropertyPipe implements PipeTransform {
-    transform<T, F>(array: T[] | null, propertyName: string, searchPropertyValue: F): T[] {
-        const dynamicKey = propertyName as keyof T;
-
-        if (
-            array &&
-            array.length > 0 &&
-            dynamicKey &&
-            typeof array[0][dynamicKey] === typeof searchPropertyValue
-        ) {
+    transform<T, F extends keyof T>(
+        items: T[] | undefined | null,
+        propertyName: F,
+        searchPropertyValue: T[F],
+    ): T[] | undefined | null {
+        if (items?.length) {
             if (typeof searchPropertyValue === 'string') {
-                return array.filter(i => (i[dynamicKey] as string).includes(searchPropertyValue));
+                return items.filter(item =>
+                    (item[propertyName] as string)
+                        .toUpperCase()
+                        .includes(searchPropertyValue.toUpperCase()),
+                );
             }
 
-            return array.filter(i => i[dynamicKey] === searchPropertyValue);
+            return items.filter(item => item[propertyName] === searchPropertyValue);
         }
 
-        return [];
+        return items;
     }
 }
