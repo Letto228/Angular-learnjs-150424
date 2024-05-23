@@ -24,3 +24,12 @@
     height: 100%;
     overflow: auto;
 }
+
+.pagination {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    background-color: #2a2a2aee;
+    align-items: center;
+    justify-content: center;
+}

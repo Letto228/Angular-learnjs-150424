@@ -1,28 +1,45 @@
 <ng-container *ngIf="products$ | async as products; else loader">
     <!-- Раскомментрировать для ДЗ -->
-    <!-- <ng-container
+    <ng-container
         *appPagination="
             let productsGroup of products;
-            chankSize: 4;
+            chunkSize: 4;
             let pageIndexes = pageIndexes;
             let activeIndex = index;
             let next = next;
             let back = back;
             let selectIndex = selectIndex
         "
-    > -->
-
-    <app-card
-        *ngFor="let product of products; trackBy: trackBy; let index = index"
-        class="card"
-        [product]="product"
-        (buy)="onProductBuy($event)"
-    ></app-card>
-    <div class="pagination">
-        <!-- Add pagination control -->
-    </div>
-
-    <!-- </ng-container> -->
+    >
+        <app-card
+            *ngFor="let product of productsGroup; trackBy: trackBy; let index = index"
+            class="card"
+            [product]="product"
+            (buy)="onProductBuy($event)"
+        ></app-card>
+        <div class="pagination">
+            <button mat-icon-button (click)="back()">
+                <mat-icon>chevron_left</mat-icon>
+            </button>
+            <ng-container *ngFor="let pageIndex of pageIndexes">
+                <button
+                    *ngIf="pageIndex !== activeIndex; else activeButton"
+                    mat-button
+                    (click)="selectIndex(pageIndex)"
+                >
+                    {{ pageIndex + 1 }}
+                </button>
+                <ng-template #activeButton>
+                    <button mat-raised-button (click)="selectIndex(pageIndex)">
+                        {{ pageIndex + 1 }}
+                    </button>
+                </ng-template>
+            </ng-container>
+            <button mat-icon-button (click)="next()">
+                <mat-icon>chevron_right</mat-icon>
+            </button>
+        </div>
+    </ng-container>
 </ng-container>
 
 <ng-template #loader>
