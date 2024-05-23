@@ -2,20 +2,22 @@ import {
     Directive,
     Input,
     OnChanges,
+    OnDestroy,
     OnInit,
     SimpleChanges,
     TemplateRef,
     ViewContainerRef,
     inject,
 } from '@angular/core';
-import {BehaviorSubject, filter, map} from 'rxjs';
+import {BehaviorSubject, Subject, filter, map, takeUntil} from 'rxjs';
 import {CarouselContext} from './carousel-context.interface';
 
 @Directive({
     selector: '[appCarousel]',
 })
-export class CarouselDirective<T> implements OnInit, OnChanges {
+export class CarouselDirective<T> implements OnInit, OnChanges, OnDestroy {
     private readonly currentIndex$ = new BehaviorSubject<number>(0);
+    private readonly destroy$ = new Subject<void>();
 
     private readonly templateRef = inject<TemplateRef<CarouselContext<T>>>(TemplateRef);
     private readonly viewContainerRef = inject(ViewContainerRef);
@@ -33,7 +35,7 @@ export class CarouselDirective<T> implements OnInit, OnChanges {
     static ngTemplateGuard_appCarouselOf<T>(
         _directive: CarouselDirective<T>,
         _inputValue: unknown,
-    ): _inputValue is T[] {
+    ): _inputValue is [T, ...T[]] {
         return true;
     }
 
@@ -45,6 +47,11 @@ export class CarouselDirective<T> implements OnInit, OnChanges {
 
     ngOnInit(): void {
         this.listenCurrentIndex();
+    }
+
+    ngOnDestroy() {
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 
     private updateView() {
@@ -60,8 +67,9 @@ export class CarouselDirective<T> implements OnInit, OnChanges {
     private listenCurrentIndex() {
         this.currentIndex$
             .pipe(
-                filter(() => this.shouldShowItems()),
-                map(currentIndex => this.getCurrentContext(currentIndex)),
+                map(currentIndex => this.shouldShowItems() && this.getCurrentContext(currentIndex)),
+                filter(Boolean),
+                takeUntil(this.destroy$),
             )
             .subscribe(context => {
                 this.viewContainerRef.clear();
@@ -69,18 +77,20 @@ export class CarouselDirective<T> implements OnInit, OnChanges {
             });
     }
 
-    private shouldShowItems(): boolean {
-        return Boolean(this.appCarouselOf?.length);
+    private shouldShowItems(
+        this: CarouselDirective<T>,
+    ): this is CarouselDirective<T> & {appCarouselOf: T[]} {
+        return !!this.appCarouselOf?.length;
     }
 
-    private getCurrentContext(currentIndex: number): CarouselContext<T> {
-        const appCarouselOf = this.appCarouselOf as T[];
-
+    private getCurrentContext(
+        this: CarouselDirective<T> & {appCarouselOf: T[]},
+        currentIndex: number,
+    ): CarouselContext<T> {
         return {
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            $implicit: appCarouselOf[currentIndex],
+            $implicit: this.appCarouselOf[currentIndex],
             index: currentIndex,
-            appCarouselOf,
+            appCarouselOf: this.appCarouselOf,
             next: this.next.bind(this),
             back: () => {
                 this.back();
@@ -88,18 +98,16 @@ export class CarouselDirective<T> implements OnInit, OnChanges {
         };
     }
 
-    private next() {
+    private next(this: CarouselDirective<T> & {appCarouselOf: T[]}) {
         const nextIndex = this.currentIndex$.value + 1;
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const newIndex = nextIndex < this.appCarouselOf!.length ? nextIndex : 0;
+        const newIndex = nextIndex < this.appCarouselOf.length ? nextIndex : 0;
 
         this.currentIndex$.next(newIndex);
     }
 
-    private back() {
+    private back(this: CarouselDirective<T> & {appCarouselOf: T[]}) {
         const previousIndex = this.currentIndex$.value - 1;
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const lastIndex = this.appCarouselOf!.length - 1;
+        const lastIndex = this.appCarouselOf.length - 1;
         const newIndex = previousIndex < 0 ? lastIndex : previousIndex;
 
         this.currentIndex$.next(newIndex);

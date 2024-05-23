@@ -14,13 +14,24 @@
     margin: 10px;
 }
 
-.scroll-container {
+.card {
+    margin: 10px;
+}
+
+.cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 10px;
-    box-sizing: border-box;
     width: 100%;
-    height: 100%;
-    overflow: auto;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.pagination__page-number_active {
+    color: blue;
 }
