@@ -14,6 +14,7 @@ import {chunk} from './chunk';
 
 @Directive({
     selector: '[appPagination]',
+    // providers: [DestroyService],
 })
 export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
     private readonly currentIndex$ = new BehaviorSubject<number>(0);

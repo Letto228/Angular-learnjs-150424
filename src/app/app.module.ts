@@ -25,6 +25,7 @@ import {InsertShadowModule} from './shared/insert-shadow/insert-shadow.module';
         PopupHostModule,
         InsertShadowModule,
     ],
+    // providers: [ProductsStoreService, ProductsApiService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
