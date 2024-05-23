@@ -16,10 +16,10 @@ import {chunk} from './chunk';
     selector: '[appPagination]',
 })
 export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
-    private groupedItems: T[][] = [];
-
     private readonly currentIndex$ = new BehaviorSubject<number>(0);
     private readonly destroy$ = new Subject<void>();
+
+    private groupedItems: T[][] = [];
 
     @Input() appPaginationOf: T[] | undefined | null;
     @Input() appPaginationChankSize = 4;
