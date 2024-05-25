@@ -1,4 +1,4 @@
-import {Directive, ElementRef, EventEmitter, HostListener, Output, inject} from '@angular/core';
+import {Directive, EventEmitter, HostListener, Output} from '@angular/core';
 import {LoadDirection} from './scroll-with-loading.interface';
 
 @Directive({
@@ -6,27 +6,21 @@ import {LoadDirection} from './scroll-with-loading.interface';
     standalone: true,
 })
 export class ScrollWithLoadingDirective {
-    private readonly element = inject(ElementRef).nativeElement;
     private readonly borderOffset = 100;
-
     @Output() loadData = new EventEmitter<LoadDirection>();
-
     loadDirection: LoadDirection | null = null;
-    lastOffsetTop = this.element.scrollTop;
 
-    @HostListener('scroll', ['$event'])
-    onScroll() {
-        const {scrollTop: offsetTop, scrollTopMax} = this.element;
-        const offsetBottom = scrollTopMax - offsetTop;
+    @HostListener('scroll', ['$event.target'])
+    onScroll(element: Element) {
+        const {scrollTop: offsetTop, scrollHeight, clientHeight} = element;
+        const offsetBottom = scrollHeight - offsetTop - clientHeight;
 
-        if (offsetTop <= this.borderOffset && offsetTop <= this.lastOffsetTop) {
+        if (offsetTop <= this.borderOffset) {
             this.loadData.emit(LoadDirection.UP);
         }
 
-        if (offsetBottom <= this.borderOffset && offsetTop >= this.lastOffsetTop) {
+        if (offsetBottom <= this.borderOffset) {
             this.loadData.emit(LoadDirection.DOWN);
         }
-
-        this.lastOffsetTop = this.element.scrollTop;
     }
 }
