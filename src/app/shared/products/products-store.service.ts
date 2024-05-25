@@ -7,11 +7,7 @@ import {ProductsApiService} from './products-api.service';
     providedIn: 'root',
 })
 export class ProductsStoreService {
-    private readonly productsApiService = inject(ProductsApiService, {
-        // optional: true,
-        // skipSelf: true,
-        // self: true,
-    });
+    private readonly productsApiService = inject(ProductsApiService);
 
     private readonly productsStore$ = new BehaviorSubject<Product[] | null>(null);
 
@@ -19,20 +15,11 @@ export class ProductsStoreService {
 
     readonly products$ = this.productsStore$.asObservable();
 
-    // constructor(@Inject(ProductsApiService) private readonly productsApiService: ProductsApiService) {
-    //     console.log(productsApiService);
-    // }
-    // constructor(private readonly productsApiService: ProductsApiService) {
-    //     console.log(productsApiService);
-    // }
-
     loadProducts() {
         if (this.activeLoadProductsSubscription) {
             this.activeLoadProductsSubscription.unsubscribe();
         }
 
-        // this.activeLoadProductsSubscription = timer(2000)
-        //     .pipe(map(() => productsMock))
         this.activeLoadProductsSubscription = this.productsApiService
             .getProducts$()
             .subscribe(products => {
