@@ -10,9 +10,11 @@ import {productsMock} from '../../shared/products/products.mock';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsListComponent {
-    readonly products$: Observable<Product[] | null> = merge(
+    activeClass = 1;
+
+    products$: Observable<Product[] | null> = merge(
         of(null),
-        timer(3000).pipe(map(() => productsMock)),
+        timer(100).pipe(map(() => productsMock)),
     );
 
     onProductBuy(id: Product['_id']) {
@@ -22,5 +24,17 @@ export class ProductsListComponent {
 
     trackBy(_index: number, item: Product): string {
         return item._id;
+    }
+
+    getProducts(num: number, chankSize: number) {
+        this.products$ = merge(
+            of(null),
+            timer(100).pipe(
+                map(() =>
+                    productsMock.slice(chankSize * (num - 1), chankSize * (num - 1) + chankSize),
+                ),
+            ),
+        );
+        this.activeClass = num;
     }
 }

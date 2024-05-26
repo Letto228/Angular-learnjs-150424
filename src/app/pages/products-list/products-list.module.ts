@@ -6,6 +6,7 @@ import {CardModule} from './card/card.module';
 import {FilterByPropertyModule} from '../../shared/filter-by-property/filter-by-property.module';
 import {DumbNgIfModule} from '../../shared/dumb-ng-if/dumb-ng-if.module';
 import {ScrollWithLoadingModule} from '../../shared/scroll-with-loading/scroll-with-loading.module';
+import {PaginationModule} from '../../shared/pagination/pagination.module';
 
 @NgModule({
     declarations: [ProductsListComponent],
@@ -17,6 +18,7 @@ import {ScrollWithLoadingModule} from '../../shared/scroll-with-loading/scroll-w
         DumbNgIfModule,
         ScrollWithLoadingModule,
         MatProgressSpinnerModule,
+        PaginationModule,
     ],
 })
 export class ProductsListModule {}
