@@ -1,7 +1,27 @@
 <!-- Easy вариант с не красивым применением -->
 <app-card
     class="card"
-    [product]="products | productFilter: name"
+    [product]="(products | productFilter: name)?.[0] || null"
+    (buy)="onProductBuy($event)"
+></app-card>
+<app-card
+    class="card"
+    [product]="(products | productFilter: name)?.[1] || null"
+    (buy)="onProductBuy($event)"
+></app-card>
+<app-card
+    class="card"
+    [product]="(products | productFilter: name)?.[2] || null"
+    (buy)="onProductBuy($event)"
+></app-card>
+<app-card
+    class="card"
+    [product]="(products | productFilter: name)?.[3] || null"
+    (buy)="onProductBuy($event)"
+></app-card>
+<app-card
+    class="card"
+    [product]="(products | productFilter: name)?.[4] || null"
     (buy)="onProductBuy($event)"
 ></app-card>
 
