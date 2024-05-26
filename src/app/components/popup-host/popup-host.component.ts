@@ -14,7 +14,7 @@ export class PopupHostComponent {
         this.insertPopupTemplate(templateRef);
     }
 
-    show = true;
+    show = false;
 
     insertPopupTemplate(templateRef: TemplateRef<unknown> | null) {
         this.viewPopup?.clear();
@@ -25,12 +25,7 @@ export class PopupHostComponent {
             return;
         }
 
-        if (templateRef) {
-            this.show = true;
-
-            setTimeout(() => {
-                this.viewPopup?.createEmbeddedView(templateRef);
-            }, 0);
-        }
+        this.show = true;
+        this.viewPopup?.createEmbeddedView(templateRef);
     }
 }
