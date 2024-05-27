@@ -1,5 +1,4 @@
 <ng-container *ngIf="products$ | async as products; else loader">
-    <!-- Раскомментрировать для ДЗ -->
     <ng-container
         *appPagination="
             let productsGroup of products;

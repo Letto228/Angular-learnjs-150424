@@ -9,10 +9,21 @@
     <img alt="Logo" class="shop-icon" [src]="aplicationConfig?.shopIconSrc" />
     <span>{{ aplicationConfig?.title }}</span>
     <span class="example-spacer"></span>
-    <button mat-icon-button aria-label="Example icon-button with heart icon" class="favorite-icon">
+    <button
+        mat-icon-button
+        aria-label="Example icon-button with heart icon"
+        class="favorite-icon"
+        (click)="openPopup(favoritePopupTempalte)"
+    >
         <mat-icon>favorite</mat-icon>
     </button>
     <button mat-icon-button aria-label="Example icon-button with share icon">
         <mat-icon>share</mat-icon>
     </button>
 </mat-toolbar>
+
+<ng-template #favoritePopupTempalte let-title>
+    {{ title }}
+    <h1>No, you are favorite</h1>
+    <button (click)="closePopup()">I know</button>
+</ng-template>
