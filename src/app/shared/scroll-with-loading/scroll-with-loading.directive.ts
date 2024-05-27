@@ -11,18 +11,17 @@ export enum LoadDirection {
 export class ScrollWithLoadingDirective {
     @Output() loadData = new EventEmitter<LoadDirection>();
 
-    borderOffset = 100;
+    readonly borderOffset = 100;
     @HostListener('scroll', ['$event.target'])
     onScroll(target: HTMLElement): void {
-        const scrollPosition = target.scrollTop;
-        const scrollHeight = target.scrollHeight;
-        const clientHeight = target.clientHeight;
-
-        if (scrollPosition + clientHeight >= scrollHeight - this.borderOffset) {
+        const {scrollTop, scrollHeight, clientHeight} = target;
+        const scrollTopAndClientHeightSum =  scrollTop + clientHeight;
+        const scrollHeightMinusBorderOffset = scrollHeight - this.borderOffset;
+        if (scrollTopAndClientHeightSum >= scrollHeightMinusBorderOffset) {
             this.loadData.emit(LoadDirection.Bottom);
         }
 
-        if (scrollPosition <= this.borderOffset) {
+        if (scrollTop <= this.borderOffset) {
             this.loadData.emit(LoadDirection.Top);
         }
     }
