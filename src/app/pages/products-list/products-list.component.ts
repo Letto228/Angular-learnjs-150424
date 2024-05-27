@@ -11,12 +11,12 @@ export class ProductsListComponent {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     cardClick(id: string) {
         // eslint-disable-next-line no-console
-        console.log('$id card click');
+        console.log(`${id} card click`);
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     buyClick(id: string) {
         // eslint-disable-next-line no-console
-        console.log('$id buy click');
+        console.log(`${id} buy click`);
     }
 }
