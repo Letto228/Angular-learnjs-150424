@@ -1,6 +1,8 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {MatIconModule} from '@angular/material/icon';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {PaginationModule} from 'src/app/shared/pagination/pagination.module';
 import {ProductsListComponent} from './products-list.component';
 import {CardModule} from './card/card.module';
 import {FilterByPropertyModule} from '../../shared/filter-by-property/filter-by-property.module';
@@ -17,6 +19,8 @@ import {ScrollWithLoadingModule} from '../../shared/scroll-with-loading/scroll-w
         DumbNgIfModule,
         ScrollWithLoadingModule,
         MatProgressSpinnerModule,
+        PaginationModule,
+        MatIconModule,
     ],
 })
 export class ProductsListModule {}
