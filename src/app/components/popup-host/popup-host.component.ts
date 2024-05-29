@@ -5,7 +5,9 @@ import {
     TemplateRef,
     ViewChild,
     ViewContainerRef,
+    inject,
 } from '@angular/core';
+import {PopupService} from 'src/app/shared/popup/popup-api.service';
 
 @Component({
     selector: 'app-popup-host',
@@ -19,6 +21,13 @@ export class PopupHostComponent {
 
     @Input() set template(template: TemplateRef<unknown> | null) {
         this.updatePopupContent(template);
+    }
+
+    private readonly popupApiService = inject(PopupService);
+    readonly popupContent$ = this.popupApiService.popupSubject$;
+
+    popupClose() {
+        this.popupApiService.closePopup();
     }
 
     get isViewportClear(): boolean {
