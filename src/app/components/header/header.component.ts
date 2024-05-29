@@ -5,7 +5,9 @@ import {
     Input,
     Output,
     TemplateRef,
+    inject,
 } from '@angular/core';
+import {PopupService} from 'src/app/shared/popup/popup-api.service';
 import {ApplicationConfig} from '../../shared/application-config/application-config.interface';
 
 @Component({
@@ -15,6 +17,7 @@ import {ApplicationConfig} from '../../shared/application-config/application-con
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
+    private readonly popupService = inject(PopupService);
     @Input() aplicationConfig: ApplicationConfig | null = null;
 
     @Output() readonly menuClick = new EventEmitter<Event>();
@@ -23,11 +26,13 @@ export class HeaderComponent {
         this.menuClick.emit(event);
     }
 
-    openPopup(_template: TemplateRef<{$implicit: string}>) {
-        // this.popupService.openPopup(template, context);
+    openPopup(template: TemplateRef<{$implicit: string}>) {
+        const popupData = {template, context: this.aplicationConfig?.title || ''};
+
+        this.popupService.openPopup(popupData);
     }
 
     closePopup() {
-        // this.popupService.closePopup();
+        this.popupService.closePopup();
     }
 }
