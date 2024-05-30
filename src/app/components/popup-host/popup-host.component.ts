@@ -1,11 +1,6 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    Input,
-    TemplateRef,
-    ViewChild,
-    ViewContainerRef,
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, HostBinding, inject} from '@angular/core';
+import {tap} from 'rxjs';
+import {PopupService} from '../../shared/popup/popup.service';
 
 @Component({
     selector: 'app-popup-host',
@@ -14,22 +9,17 @@ import {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PopupHostComponent {
-    @ViewChild('viewport', {read: ViewContainerRef, static: true})
-    private readonly viewportViewContainer: ViewContainerRef | undefined;
+    private readonly popupService = inject(PopupService);
 
-    @Input() set template(template: TemplateRef<unknown> | null) {
-        this.updatePopupContent(template);
-    }
+    @HostBinding('class.empty') isEmpty = true;
 
-    get isViewportClear(): boolean {
-        return !this.viewportViewContainer?.length;
-    }
+    readonly templateContent$ = this.popupService.popupTemplate$.pipe(
+        tap(templateOptions => {
+            this.isEmpty = !templateOptions?.template;
+        }),
+    );
 
-    private updatePopupContent(template: TemplateRef<unknown> | null) {
-        this.viewportViewContainer?.clear();
-
-        if (template) {
-            this.viewportViewContainer?.createEmbeddedView(template);
-        }
+    onPopupClose() {
+        this.popupService.closePopup();
     }
 }
