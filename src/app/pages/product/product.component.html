@@ -17,11 +17,7 @@
         <h1>{{ product.name }}</h1>
         <nav mat-tab-nav-bar [tabPanel]="tabPanel">
             <a mat-tab-link [routerLink]="['description']">description</a>
-            <a mat-tab-link (click)="navigateToType()">type</a>
-            <!-- <a mat-tab-link [routerLink]="['type']">type</a> -->
-            <!-- <a mat-tab-link [routerLink]="['./type']">type</a> -->
-            <!-- <a mat-tab-link [routerLink]="['/product', product._id, 'type']">type</a> -->
-            <!-- <a mat-tab-link [routerLink]="['/type']">type</a> -->
+            <a mat-tab-link [routerLink]="['type']">type</a>
         </nav>
         <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
 

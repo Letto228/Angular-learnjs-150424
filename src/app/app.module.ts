@@ -32,7 +32,7 @@ import {CatchErrorInterceptor} from './shared/catch-error/catch-error.intercepto
             provide: HTTP_INTERCEPTORS,
             useClass: BaseUrlInterceptor,
             multi: true,
-        }, // BaseUrlInterceptor.intercept(req) => BaseUrlInterceptorHandler.handle(req) => return CatchErrorInterceptor.intercept(req)
+        },
         {
             provide: HTTP_INTERCEPTORS,
             useClass: CatchErrorInterceptor,
