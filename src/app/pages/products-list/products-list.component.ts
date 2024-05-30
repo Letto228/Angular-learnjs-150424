@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit, inject} from '@angular/core';
 import {Product} from '../../shared/products/product.interface';
 import {ProductsStoreService} from '../../shared/products/products-store.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-products-list',
@@ -11,6 +12,7 @@ import {ProductsStoreService} from '../../shared/products/products-store.service
 })
 export class ProductsListComponent implements OnInit {
     private readonly productsStoreService = inject(ProductsStoreService);
+    private readonly router = inject(Router);
 
     readonly products$ = this.productsStoreService.products$;
 
@@ -25,5 +27,11 @@ export class ProductsListComponent implements OnInit {
 
     trackBy(_index: number, item: Product): string {
         return item._id;
+    }
+
+    navigateToProduct() {
+        // this.router.navigate(['/product', 'id']);
+        // this.router.navigate(['/product/id']);
+        this.router.navigateByUrl('/product/id');
     }
 }

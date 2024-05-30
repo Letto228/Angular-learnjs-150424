@@ -9,6 +9,7 @@ import {FilterByPropertyModule} from '../../shared/filter-by-property/filter-by-
 import {DumbNgIfModule} from '../../shared/dumb-ng-if/dumb-ng-if.module';
 import {ScrollWithLoadingModule} from '../../shared/scroll-with-loading/scroll-with-loading.module';
 import {PaginationModule} from '../../shared/pagination/pagination.module';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
     declarations: [ProductsListComponent],
@@ -23,6 +24,7 @@ import {PaginationModule} from '../../shared/pagination/pagination.module';
         MatButtonModule,
         MatIconModule,
         PaginationModule,
+        RouterModule,
     ],
 })
 export class ProductsListModule {}
