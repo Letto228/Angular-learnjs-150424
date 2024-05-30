@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {Observable, map, merge, of, timer} from 'rxjs';
 import {Product} from '../../shared/products/product.interface';
 import {productsMock} from '../../shared/products/products.mock';
+import {LoadDirection} from '../../shared/scroll-with-loading/scroll-with-loading.directive';
 
 @Component({
     selector: 'app-products-list',
@@ -18,5 +19,10 @@ export class ProductsListComponent {
     onProductBuy(id: Product['_id']) {
         // eslint-disable-next-line no-console
         console.log(id);
+    }
+
+    onLoad(direction: LoadDirection) {
+        // eslint-disable-next-line no-console
+        console.log(direction);
     }
 }
