@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit, inject} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {map} from 'rxjs';
 import {Product} from '../../shared/products/product.interface';
-import {ProductsStoreService} from '../../shared/products/products-store.service';
-import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-products-list',
@@ -11,13 +11,35 @@ import {Router} from '@angular/router';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsListComponent implements OnInit {
-    private readonly productsStoreService = inject(ProductsStoreService);
+    // private readonly productsStoreService = inject(ProductsStoreService);
     private readonly router = inject(Router);
+    private readonly activatedRoute = inject(ActivatedRoute);
 
-    readonly products$ = this.productsStoreService.products$;
+    // readonly products$ = this.productsStoreService.products$;
+    // eslint-disable-next-line dot-notation
+    readonly products$ = this.activatedRoute.data.pipe(map(data => data['products']));
 
     ngOnInit(): void {
-        this.productsStoreService.loadProducts();
+        // eslint-disable-next-line no-console
+        console.log('ProductsListComponent Created!', this.activatedRoute.snapshot.data);
+
+        // this.productsStoreService.loadProducts();
+
+        // this.router.navigate(['/products-list'], {
+        //     queryParams: {
+        //         name: 'Egor',
+        //     },
+        // });
+
+        // this.activatedRoute.queryParams.subscribe(console.log);
+
+        // setTimeout(() => {
+        //     this.router.navigate(['/products-list'], {
+        //         queryParams: {
+        //             name: 'Test',
+        //         },
+        //     });
+        // }, 3000);
     }
 
     onProductBuy(id: Product['_id']) {

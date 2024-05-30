@@ -1,15 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {ProductsListComponent} from './pages/products-list/products-list.component';
-import {ProductsListModule} from './pages/products-list/products-list.module';
-import {ProductComponent} from './pages/product/product.component';
-import {ProductModule} from './pages/product/product.module';
-import {TypeComponent} from './pages/product/type/type.component';
-import {DescriptionComponent} from './pages/product/description/description.component';
-import {TypeModule} from './pages/product/type/type.module';
-import {DescriptionModule} from './pages/product/description/description.module';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {NotFoundModule} from './pages/not-found/not-found.module';
+import {productsResolver} from './shared/test-guards/products.resolver';
 
 const routes: Routes = [
     {
@@ -18,29 +11,65 @@ const routes: Routes = [
         // pathMatch: 'prefix',
         pathMatch: 'full',
     },
+    // {
+    //     path: 'products-list',
+    //     component: NotFoundComponent,
+    //     // canMatch: [canMatchQuestionGuard],
+    // },
+    // Lazy navigation
     {
         path: 'products-list',
-        component: ProductsListComponent,
+        loadChildren: () =>
+            import('./pages/products-list/products-list.module').then(m => m.ProductsListModule),
+        resolve: {
+            products: productsResolver,
+        },
+        // children: [
+        //     {
+        //         path: '',
+        //         component: ProductsListComponent,
+        //     },
+        // ],
     },
+    // Lazy navigation
     {
         path: 'product/:id',
-        component: ProductComponent,
-        children: [
-            {
-                path: 'type',
-                component: TypeComponent,
-            },
-            {
-                path: 'description',
-                component: DescriptionComponent,
-            },
-            {
-                path: '',
-                // redirectTo: '/product/id/description',
-                redirectTo: 'description',
-                pathMatch: 'full',
-            },
-        ],
+        loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule),
+        // canActivate: [canActivateQuestionGuard],
+        // canDeactivate: [canDeactivateQuestionGuard],
+        // canLoad: [() => question('Можно ли загрузить чанк?')],
+        // ----
+        // canActivate: [TestGuard],
+        // canActivateChild: [TestGuard],
+        // canActivate: [
+        //     (...args: Parameters<CanActivateFn>) => inject(TestGuard).canActivate(...args),
+        // ],
+        // canActivateChild: [
+        //     (...args: Parameters<CanActivateChildFn>) =>
+        //         inject(TestGuard).canActivateChild(...args),
+        // ],
+        // children: [
+        //     {
+        //         path: '',
+        //         component: ProductComponent,
+        //         children: [
+        //             {
+        //                 path: 'type',
+        //                 component: TypeComponent,
+        //             },
+        //             {
+        //                 path: 'description',
+        //                 component: DescriptionComponent,
+        //             },
+        //             {
+        //                 path: '',
+        //                 // redirectTo: '/product/id/description',
+        //                 redirectTo: 'description',
+        //                 pathMatch: 'full',
+        //             },
+        //         ],
+        //     },
+        // ],
     },
     {
         path: '**',
@@ -49,17 +78,22 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [
-        RouterModule.forRoot(routes),
-        ProductsListModule,
-        ProductModule,
-        TypeModule,
-        DescriptionModule,
-        NotFoundModule,
-    ],
+    imports: [RouterModule.forRoot(routes), NotFoundModule],
     exports: [RouterModule],
 })
 export class AppRoutingModule {}
+
+// class TestGuard implements CanActivate, CanActivateChild {
+//     canActivate(
+//         route: ActivatedRouteSnapshot,
+//         state: RouterStateSnapshot,
+//     ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {}
+
+//     canActivateChild(
+//         childRoute: ActivatedRouteSnapshot,
+//         state: RouterStateSnapshot,
+//     ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {}
+// }
 
 /**
  * url === http://localhost:4200/product/id

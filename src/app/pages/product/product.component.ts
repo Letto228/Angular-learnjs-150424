@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {filter, map, switchMap, tap} from 'rxjs';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ProductsStoreService} from '../../shared/products/products-store.service';
 
 @Component({
@@ -12,6 +12,7 @@ import {ProductsStoreService} from '../../shared/products/products-store.service
 export class ProductComponent {
     private readonly productsStoreService = inject(ProductsStoreService);
     private readonly activatedRoute = inject(ActivatedRoute);
+    private readonly router = inject(Router);
 
     // readonly product$ = of('96-planset-dexp-ursus-s290-32-gb-3g-cernyj').pipe(
     // readonly product$ = this.activatedRoute.paramMap.pipe(
@@ -28,4 +29,15 @@ export class ProductComponent {
         }),
         switchMap(() => this.productsStoreService.currentProduct$),
     );
+
+    navigateToType() {
+        this.router.navigate(['./type'], {relativeTo: this.activatedRoute});
+        // const urlTree = this.router.createUrlTree(['./type'], {relativeTo: this.activatedRoute});
+
+        // console.log(urlTree.toString());
+
+        // this.router.navigateByUrl(urlTree);
+        // this.router.navigateByUrl(urlTree.toString());
+        // this.router.navigateByUrl('./type');
+    }
 }
