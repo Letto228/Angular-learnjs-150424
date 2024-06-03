@@ -2,6 +2,7 @@ import {BehaviorSubject, Subscription} from 'rxjs';
 import {Injectable, inject} from '@angular/core';
 import {Product} from './product.interface';
 import {ProductsApiService} from './products-api.service';
+import {SubCategory} from '../categories/sub-category.interface';
 
 @Injectable({
     providedIn: 'root',
@@ -18,13 +19,13 @@ export class ProductsStoreService {
     readonly products$ = this.productsStore$.asObservable();
     readonly currentProduct$ = this.currentProductStore$.asObservable();
 
-    loadProducts() {
+    loadProducts(subCategoryId?: SubCategory['_id'] | null) {
         if (this.activeLoadProductsSubscription) {
             this.activeLoadProductsSubscription.unsubscribe();
         }
 
         this.activeLoadProductsSubscription = this.productsApiService
-            .getProducts$()
+            .getProducts$(subCategoryId)
             .subscribe(products => {
                 this.productsStore$.next(products);
 

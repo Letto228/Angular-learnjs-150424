@@ -3,16 +3,20 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Product} from './product.interface';
 import {ProductsDto} from './products.dto';
+import {SubCategory} from '../categories/sub-category.interface';
+import {getParamsFromObject} from '../params/get-params-from-object';
 
 @Injectable({providedIn: 'root'})
 export class ProductsApiService {
     private readonly httpClient = inject(HttpClient);
 
-    getProducts$(): Observable<Product[]> {
-        return this.httpClient.get<ProductsDto>(`/products`).pipe(
-            map(({data}) => data.items),
-            catchError(() => of([])),
-        );
+    getProducts$(subCategoryId?: SubCategory['_id'] | null): Observable<Product[]> {
+        return this.httpClient
+            .get<ProductsDto>(`/products`, {params: getParamsFromObject({subCat: subCategoryId})})
+            .pipe(
+                map(({data}) => data.items),
+                catchError(() => of([])),
+            );
         // return of<ProductsDto>({data: {items: productsMock}}).pipe(map(({data}) => data.items));
     }
 

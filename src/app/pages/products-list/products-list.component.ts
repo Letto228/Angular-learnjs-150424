@@ -1,7 +1,8 @@
-import {ChangeDetectionStrategy, Component, OnInit, inject} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {map} from 'rxjs';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {map, switchMap, tap} from 'rxjs';
 import {Product} from '../../shared/products/product.interface';
+import {ProductsStoreService} from '../../shared/products/products-store.service';
 
 @Component({
     selector: 'app-products-list',
@@ -10,37 +11,17 @@ import {Product} from '../../shared/products/product.interface';
     providers: [],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductsListComponent implements OnInit {
-    // private readonly productsStoreService = inject(ProductsStoreService);
-    private readonly router = inject(Router);
+export class ProductsListComponent {
+    private readonly productsStoreService = inject(ProductsStoreService);
     private readonly activatedRoute = inject(ActivatedRoute);
 
-    // readonly products$ = this.productsStoreService.products$;
-    // eslint-disable-next-line dot-notation
-    readonly products$ = this.activatedRoute.data.pipe(map(data => data['products']));
-
-    ngOnInit(): void {
-        // eslint-disable-next-line no-console
-        console.log('ProductsListComponent Created!', this.activatedRoute.snapshot.data);
-
-        // this.productsStoreService.loadProducts();
-
-        // this.router.navigate(['/products-list'], {
-        //     queryParams: {
-        //         name: 'Egor',
-        //     },
-        // });
-
-        // this.activatedRoute.queryParams.subscribe(console.log);
-
-        // setTimeout(() => {
-        //     this.router.navigate(['/products-list'], {
-        //         queryParams: {
-        //             name: 'Test',
-        //         },
-        //     });
-        // }, 3000);
-    }
+    readonly products$ = this.activatedRoute.paramMap.pipe(
+        map(paramMap => paramMap.get('subCategoryId')),
+        tap(subCategoryId => {
+            this.productsStoreService.loadProducts(subCategoryId);
+        }),
+        switchMap(() => this.productsStoreService.products$),
+    );
 
     onProductBuy(id: Product['_id']) {
         // eslint-disable-next-line no-console
@@ -49,11 +30,5 @@ export class ProductsListComponent implements OnInit {
 
     trackBy(_index: number, item: Product): string {
         return item._id;
-    }
-
-    navigateToProduct() {
-        // this.router.navigate(['/product', 'id']);
-        // this.router.navigate(['/product/id']);
-        this.router.navigateByUrl('/product/id');
     }
 }

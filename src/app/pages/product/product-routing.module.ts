@@ -20,7 +20,6 @@ const routes: Routes = [
             },
             {
                 path: '',
-                // redirectTo: '/product/id/description',
                 redirectTo: 'description',
                 pathMatch: 'full',
             },
