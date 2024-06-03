@@ -6,8 +6,10 @@
     >
         <mat-icon>menu</mat-icon>
     </button>
-    <img alt="Logo" class="shop-icon" [src]="aplicationConfig?.shopIconSrc" [routerLink]="'/'" />
-    <span>{{ aplicationConfig?.title }}</span>
+    <div routerLink="/products-list" class="logo">
+        <img alt="logo" class="logo__icon" [src]="aplicationConfig?.shopIconSrc" />
+        <span>{{ aplicationConfig?.title }}</span>
+    </div>
     <span class="example-spacer"></span>
     <button
         mat-icon-button
