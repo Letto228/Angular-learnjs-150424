@@ -4,14 +4,6 @@ import {ProductsListComponent} from './products-list.component';
 import {productsListMatcher} from './products-list-url-matcher';
 
 const routes: Routes = [
-    // {
-    //     path: '',
-    //     component: ProductsListComponent,
-    // },
-    // {
-    //     path: ':subCategoryId',
-    //     component: ProductsListComponent,
-    // },
     {
         matcher: productsListMatcher,
         component: ProductsListComponent,

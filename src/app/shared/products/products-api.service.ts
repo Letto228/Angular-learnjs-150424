@@ -17,7 +17,6 @@ export class ProductsApiService {
                 map(({data}) => data.items),
                 catchError(() => of([])),
             );
-        // return of<ProductsDto>({data: {items: productsMock}}).pipe(map(({data}) => data.items));
     }
 
     getProduct$(id: Product['_id']): Observable<Product | undefined> {
@@ -25,6 +24,5 @@ export class ProductsApiService {
             map(({data}) => data),
             catchError(() => of(undefined)),
         );
-        // return of(productsMock.find(({_id}) => _id === id));
     }
 }
