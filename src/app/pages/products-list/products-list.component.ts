@@ -33,6 +33,8 @@ export class ProductsListComponent {
         switchMap(() => this.brandsService.brands$),
     );
 
+    search = '';
+
     onProductBuy(id: Product['_id']) {
         // eslint-disable-next-line no-console
         console.log(id);

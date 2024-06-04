@@ -14,7 +14,10 @@
     >
         <div class="cards">
             <app-card
-                *ngFor="let product of productsGroup; trackBy: trackBy"
+                *ngFor="
+                    let product of productsGroup | filterByProperty: 'name' : search;
+                    trackBy: trackBy
+                "
                 class="card"
                 [product]="product"
                 [routerLink]="['/product', product._id]"
