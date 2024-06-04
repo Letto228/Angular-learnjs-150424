@@ -1,0 +1,34 @@
+<form [formGroup]="filterForm">
+    <mat-form-field appearance="fill">
+        <mat-label>Search</mat-label>
+        <input matInput formControlName="search" />
+    </mat-form-field>
+
+    <div *ngIf="brands; else loaderTemplateRef" formArrayName="brands" class="checkbox-container">
+        <mat-checkbox *ngFor="let brand of brands; let index = index" [formControlName]="index">
+            {{ brand }}
+        </mat-checkbox>
+    </div>
+    <div formGroupName="priceRange" class="price-range">
+        <div>
+            Min
+            <!-- <app-counter-input [formControl]="control"></app-counter-input> -->
+            <app-counter-input formControlName="min"></app-counter-input>
+        </div>
+        <div>
+            Max
+            <app-counter-input formControlName="max"></app-counter-input>
+        </div>
+    </div>
+</form>
+
+<!-- {{control.value}}
+{{control.pristine}} -->
+{{ filterForm.get('search')?.valid }}
+<!-- {{filterForm.get('search')?.errors | json}}
+{{filterForm.get('search')?.getError('isStringValidator')}} -->
+{{ errors$ | async | json }}
+
+<ng-template #loaderTemplateRef>
+    <mat-spinner diameter="60" class="loader"></mat-spinner>
+</ng-template>

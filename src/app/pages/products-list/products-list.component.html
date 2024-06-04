@@ -1,4 +1,6 @@
-<ng-container *ngIf="products$ | async as products; else loader">
+<app-filter [brands]="brands$ | async"></app-filter>
+
+<div *ngIf="products$ | async as products; else loader">
     <ng-container
         *appPagination="
             let productsGroup of products;
@@ -39,7 +41,7 @@
             </button>
         </div>
     </ng-container>
-</ng-container>
+</div>
 
 <ng-template #loader>
     <mat-spinner></mat-spinner>

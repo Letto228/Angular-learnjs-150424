@@ -10,6 +10,8 @@ import {DumbNgIfModule} from '../../shared/dumb-ng-if/dumb-ng-if.module';
 import {ScrollWithLoadingModule} from '../../shared/scroll-with-loading/scroll-with-loading.module';
 import {PaginationModule} from '../../shared/pagination/pagination.module';
 import {ProductsListRoutingModule} from './products-list-routing.module';
+// import {FilterModule} from './filter/reactive/filter.module';
+import {FilterModule} from './filter/template-driven/filter.module';
 
 @NgModule({
     declarations: [ProductsListComponent],
@@ -25,6 +27,7 @@ import {ProductsListRoutingModule} from './products-list-routing.module';
         MatIconModule,
         PaginationModule,
         ProductsListRoutingModule,
+        FilterModule,
     ],
 })
 export class ProductsListModule {}

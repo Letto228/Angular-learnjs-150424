@@ -1,0 +1,56 @@
+<form #form="ngForm" class="filter" (ngSubmit)="onFormSend(form.value, form.valid)">
+    <mat-form-field appearance="fill">
+        <mat-label>Search</mat-label>
+        <input
+            #searchModel="ngModel"
+            name="search"
+            appIsStringAsynValidator
+            required
+            matInput
+            [ngModel]="''"
+            [minlength]="3"
+        />
+    </mat-form-field>
+
+    <div *ngIf="brands; else loaderTemplateRef" ngModelGroup="brands" class="checkbox-container">
+        <!-- <mat-checkbox
+            *ngFor="let brand of brands; let index = index"
+            ngModel
+            [name]="index.toString()"
+        > -->
+        <mat-checkbox
+            *ngFor="let brand of brands; let index = index"
+            [ngModel]="false"
+            [name]="brand"
+        >
+            {{ brand }}
+        </mat-checkbox>
+    </div>
+    <div ngModelGroup="priceRange" class="price-range">
+        <div>
+            Min
+            <!-- <app-counter-input [ngModel]="counter" (ngModelChange)="onCounterChange($event)"></app-counter-input> -->
+            <!-- <app-counter-input [(ngModel)]="counter"></app-counter-input> -->
+            <!-- <app-counter-input #control="ngModel" ngModel></app-counter-input> -->
+            <app-counter-input name="min" [ngModel]="0"></app-counter-input>
+        </div>
+        <div>
+            Max
+            <app-counter-input name="max" [ngModel]="99999999"></app-counter-input>
+        </div>
+    </div>
+
+    <!-- <button type="button" (click)="onFormSend(form.value)">Send</button> -->
+    <button type="submit">Send</button>
+</form>
+
+{{ searchModel.valid }}
+{{ searchModel.errors | json }}
+
+<!-- {{counter}} -->
+<!-- {{control.value}}
+{{control.touched}} -->
+
+<ng-template #loaderTemplateRef>
+    <mat-spinner diameter="60" class="loader"></mat-spinner>
+</ng-template>
