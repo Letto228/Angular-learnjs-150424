@@ -1,12 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-    inject,
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import {IProductsFilter} from '../products-filter.interface';
 
 @Component({
@@ -16,28 +8,9 @@ import {IProductsFilter} from '../products-filter.interface';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterComponent {
-    private readonly changeDetectorRef = inject(ChangeDetectorRef);
-
     @Input() brands: string[] | null = null;
 
     @Output() changeFilter = new EventEmitter<IProductsFilter>();
-
-    counter = 555;
-
-    constructor() {
-        setTimeout(() => {
-            this.counter = 90;
-
-            this.changeDetectorRef.markForCheck();
-        }, 3000);
-    }
-
-    onCounterChange(newCounter: number) {
-        this.counter = newCounter;
-
-        // eslint-disable-next-line no-console
-        console.log(`Change`, newCounter);
-    }
 
     onFormSend(form: unknown, valid: boolean | null) {
         if (!valid) {

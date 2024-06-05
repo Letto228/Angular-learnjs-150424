@@ -12,7 +12,6 @@
     <div formGroupName="priceRange" class="price-range">
         <div>
             Min
-            <!-- <app-counter-input [formControl]="control"></app-counter-input> -->
             <app-counter-input formControlName="min"></app-counter-input>
         </div>
         <div>
@@ -21,13 +20,6 @@
         </div>
     </div>
 </form>
-
-<!-- {{control.value}}
-{{control.pristine}} -->
-{{ filterForm.get('search')?.valid }}
-<!-- {{filterForm.get('search')?.errors | json}}
-{{filterForm.get('search')?.getError('isStringValidator')}} -->
-{{ errors$ | async | json }}
 
 <ng-template #loaderTemplateRef>
     <mat-spinner diameter="60" class="loader"></mat-spinner>
