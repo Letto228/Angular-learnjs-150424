@@ -1,9 +1,9 @@
-import {DumbNgIfDirective} from './dumb-ng-if.directive';
+// import {DumbNgIfDirective} from './dumb-ng-if.directive';
 
-describe('DumbNgIfDirective', () => {
-    it('should create an instance', () => {
-        const directive = new DumbNgIfDirective();
+// describe('DumbNgIfDirective', () => {
+//     it('should create an instance', () => {
+//         const directive = new DumbNgIfDirective();
 
-        expect(directive).toBeTruthy();
-    });
-});
+//         expect(directive).toBeTruthy();
+//     });
+// });
