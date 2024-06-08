@@ -11,6 +11,12 @@ const routes: Routes = [
     },
     {
         path: 'products-list',
+        pathMatch: 'full',
+        loadChildren: () =>
+            import('./pages/products-list/products-list.module').then(m => m.ProductsListModule),
+    },
+    {
+        path: 'products-list/:categoryId',
         loadChildren: () =>
             import('./pages/products-list/products-list.module').then(m => m.ProductsListModule),
     },
